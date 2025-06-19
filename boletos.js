@@ -76,16 +76,16 @@ botonPago.addEventListener("click", (e) => {
 
   switch (tipo) {
     case "preventa":
-      url = "https://mpago.la/1wCMqmd";
+      url = "https://mpago.li/1jMDkrG";
       break;
     case "Preventa vip":
-      url = "https://mpago.la/27EcR3g";
+      url = "https://mpago.la/2Xji7Dh";
       break;
     case "Preventa VIP Pass 2 day":
-      url = "https://mpago.la/2RYcrT2";
+      url = "https://mpago.la/173GLyx";
       break;
     case "Ultimate Pass Vip":
-      url = "https://mpago.la/2rZKsxo";
+      url = "https://mpago.la/32JN1nz";
       break;
   }
 
