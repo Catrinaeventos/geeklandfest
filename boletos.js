@@ -7,9 +7,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const tipo = selectTipo.value;
 
-    
     const links = {
-      'preventa': 'https://mpago.li/1jMDkrG,
+      'preventa': 'https://mpago.li/1jMDkrG',
       'Preventa vip': 'https://mpago.la/2Xji7Dh',
       'Preventa VIP Pass 2 day': 'https://mpago.la/173GLyx',
       'Ultimate Pass Vip': 'https://mpago.la/32JN1nz',
