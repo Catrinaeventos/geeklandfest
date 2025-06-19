@@ -1,63 +1,98 @@
-// Espera a que cargue el DOM
-document.addEventListener("DOMContentLoaded", () => {
-  const formulario = document.getElementById("formulario-boletos");
-  const botonPago = document.querySelector(".boton-pago");
-  const mensaje = document.getElementById("mensaje");
+// boletos.js
 
-  const links = {
-    "preventa": "https://mpago.li/1jMDkrG", // remplaza con tus enlaces reales
-    "Preventa vip": "https://mpago.la/2Xji7Dh",
-    "Preventa VIP Pass 2 day": "https://mpago.la/173GLyx",
-    "Ultimate Pass Vip": "https://mpago.la/32JN1nz"
-  };
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 
-  let datosUsuario = {
-    nombre: "",
-    email: "",
-    tipo: ""
-  };
+const firebaseConfig = {
+  apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
+  authDomain: "geeklandfest.firebaseapp.com",
+  projectId: "geeklandfest",
+  storageBucket: "geeklandfest.appspot.com",
+  messagingSenderId: "291993453509",
+  appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
+};
 
-  formulario.addEventListener("submit", (e) => {
-    e.preventDefault(); // ✋ Detiene el salto de página
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-    const nombre = document.getElementById("nombre").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const tipo = document.getElementById("tipo").value;
+const formulario = document.getElementById("formulario-boletos");
+const mensaje = document.getElementById("mensaje");
+const botonPago = document.querySelector(".boton-pago");
 
-    if (!nombre || !email || !tipo) {
-      mensaje.textContent = "Por favor, completa todos los campos.";
-      mensaje.style.color = "#d32f2f";
-      return;
-    }
+// Deshabilitar botón de pago inicialmente
+botonPago.style.pointerEvents = "none";
+botonPago.style.opacity = "0.5";
 
-    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    if (!emailValido.test(email)) {
-      mensaje.textContent = "Por favor, ingresa un correo válido.";
-      mensaje.style.color = "#d32f2f";
-      return;
-    }
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-    // ✅ Si todo está bien, guardamos los datos temporalmente
-    datosUsuario = { nombre, email, tipo };
-    mensaje.textContent = "¡Datos válidos! Ahora da clic en 'Pagar ahora'.";
+  const nombre = document.getElementById("nombre").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const tipo = document.getElementById("tipo").value;
+
+  // Validaciones básicas
+  if (nombre === "" || email === "") {
+    mensaje.textContent = "Por favor, completa todos los campos.";
+    mensaje.style.color = "#d32f2f";
+    return;
+  }
+
+  // Validación de formato de email
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailValido) {
+    mensaje.textContent = "Correo electrónico no válido.";
+    mensaje.style.color = "#d32f2f";
+    return;
+  }
+
+  try {
+    await addDoc(collection(db, "registros"), {
+      nombre,
+      email,
+      tipo,
+      fecha: serverTimestamp(),
+    });
+
+    mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
     mensaje.style.color = "#00c853";
-  });
 
-  botonPago.addEventListener("click", (e) => {
-    e.preventDefault(); // ✋ Evita que el <a href="#"> recargue la página
+    // Habilitar botón de pago
+    botonPago.style.pointerEvents = "auto";
+    botonPago.style.opacity = "1";
 
-    if (!datosUsuario.nombre || !datosUsuario.email || !datosUsuario.tipo) {
-      mensaje.textContent = "Primero llena el formulario correctamente.";
-      mensaje.style.color = "#d32f2f";
-      return;
-    }
+  } catch (error) {
+    console.error("Error al guardar en Firestore:", error);
+    mensaje.textContent = "Hubo un error. Intenta de nuevo más tarde.";
+    mensaje.style.color = "#d32f2f";
+  }
+});
 
-    const enlacePago = links[datosUsuario.tipo];
-    if (enlacePago) {
-      window.open(enlacePago, "_blank");
-    } else {
-      mensaje.textContent = "Error al generar el enlace de pago.";
-      mensaje.style.color = "#d32f2f";
-    }
-  });
+// Redirección según opción elegida
+botonPago.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  const tipo = document.getElementById("tipo").value;
+  let url = "";
+
+  switch (tipo) {
+    case "preventa":
+      url = "https://mpago.la/1wCMqmd";
+      break;
+    case "Preventa vip":
+      url = "https://mpago.la/27EcR3g";
+      break;
+    case "Preventa VIP Pass 2 day":
+      url = "https://mpago.la/2RYcrT2";
+      break;
+    case "Ultimate Pass Vip":
+      url = "https://mpago.la/2rZKsxo";
+      break;
+  }
+
+  if (url) {
+    window.open(url, "_blank");
+  } else {
+    mensaje.textContent = "Selecciona un tipo de entrada válido.";
+    mensaje.style.color = "#d32f2f";
+  }
 });
