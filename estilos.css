@@ -206,6 +206,15 @@ footer {
   text-align: center;
   font-weight: bold;
 }
+
+#mensaje {
+  min-height: 1.5em; /* espacio reservado para que no salte el diseño */
+  margin-top: 10px;
+  font-weight: bold;
+  color: #d32f2f; /* rojo para errores */
+  transition: opacity 0.3s ease-in-out;
+}
+
   
 /* Contador */
 #contador {
