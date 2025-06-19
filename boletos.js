@@ -35,6 +35,7 @@ formulario.addEventListener("submit", async (e) => {
   if (nombre === "" || email === "") {
     mensaje.textContent = "Por favor completa todos los campos.";
     mensaje.style.color = "#d32f2f";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
     registroExitoso = false;
     return;
   }
@@ -44,6 +45,7 @@ formulario.addEventListener("submit", async (e) => {
   if (!emailValido) {
     mensaje.textContent = "Correo electrónico no válido.";
     mensaje.style.color = "#d32f2f";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
     registroExitoso = false;
     return;
   }
@@ -58,6 +60,7 @@ formulario.addEventListener("submit", async (e) => {
 
     mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
     mensaje.style.color = "#00c853";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
 
     // Habilitar botón de pago
     botonPago.style.pointerEvents = "auto";
@@ -68,6 +71,7 @@ formulario.addEventListener("submit", async (e) => {
     console.error("Error al guardar en Firestore:", error);
     mensaje.textContent = "Error al guardar datos. Intenta más tarde.";
     mensaje.style.color = "#d32f2f";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
     registroExitoso = false;
   }
 });
@@ -78,6 +82,7 @@ botonPago.addEventListener("click", (e) => {
   if (!registroExitoso) {
     mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
     mensaje.style.color = "#d32f2f";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
     return;
   }
 
@@ -104,5 +109,7 @@ botonPago.addEventListener("click", (e) => {
   } else {
     mensaje.textContent = "Selecciona un tipo de entrada válido.";
     mensaje.style.color = "#d32f2f";
+    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 });
+
