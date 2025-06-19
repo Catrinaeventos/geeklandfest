@@ -1,60 +1,63 @@
-import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
-  authDomain: "geeklandfest.firebaseapp.com",
-  projectId: "geeklandfest",
-  storageBucket: "geeklandfest.appspot.com",
-  messagingSenderId: "291993453509",
-  appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-
-document.getElementById("formulario-boletos").addEventListener("submit", async function (e) {
-  e.preventDefault();
-
-  const nombre = document.getElementById("nombre").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const tipo = document.getElementById("tipo").value;
+// Espera a que cargue el DOM
+document.addEventListener("DOMContentLoaded", () => {
+  const formulario = document.getElementById("formulario-boletos");
+  const botonPago = document.querySelector(".boton-pago");
   const mensaje = document.getElementById("mensaje");
 
-  // VALIDACIONES EXTRA
-  if (!nombre || nombre.split(" ").length < 2) {
-    mensaje.innerText = "Por favor, escribe tu nombre completo (nombre y apellido).";
-    mensaje.style.color = "red";
-    return;
-  }
+  const links = {
+    "preventa": "https://mpago.li/1jMDkrG", // remplaza con tus enlaces reales
+    "Preventa vip": "https://mpago.la/2Xji7Dh",
+    "Preventa VIP Pass 2 day": "https://mpago.la/173GLyx",
+    "Ultimate Pass Vip": "https://mpago.la/32JN1nz"
+  };
 
-  if (!email || !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
-    mensaje.innerText = "Por favor, ingresa un correo electrónico válido.";
-    mensaje.style.color = "red";
-    return;
-  }
+  let datosUsuario = {
+    nombre: "",
+    email: "",
+    tipo: ""
+  };
 
-  if (!tipo) {
-    mensaje.innerText = "Por favor, selecciona un tipo de boleto.";
-    mensaje.style.color = "red";
-    return;
-  }
+  formulario.addEventListener("submit", (e) => {
+    e.preventDefault(); // ✋ Detiene el salto de página
 
-  // GUARDAR EN FIRESTORE
-  try {
-    await addDoc(collection(db, "boletos"), {
-      nombre,
-      email,
-      tipo,
-      fecha: serverTimestamp()
-    });
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const tipo = document.getElementById("tipo").value;
 
-    mensaje.innerText = "¡Reserva registrada con éxito!";
-    mensaje.style.color = "green";
-    document.getElementById("formulario-boletos").reset();
-  } catch (error) {
-    console.error("Error al guardar:", error);
-    mensaje.innerText = "Hubo un error al registrar tu reserva. Intenta de nuevo.";
-    mensaje.style.color = "red";
-  }
+    if (!nombre || !email || !tipo) {
+      mensaje.textContent = "Por favor, completa todos los campos.";
+      mensaje.style.color = "#d32f2f";
+      return;
+    }
+
+    const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailValido.test(email)) {
+      mensaje.textContent = "Por favor, ingresa un correo válido.";
+      mensaje.style.color = "#d32f2f";
+      return;
+    }
+
+    // ✅ Si todo está bien, guardamos los datos temporalmente
+    datosUsuario = { nombre, email, tipo };
+    mensaje.textContent = "¡Datos válidos! Ahora da clic en 'Pagar ahora'.";
+    mensaje.style.color = "#00c853";
+  });
+
+  botonPago.addEventListener("click", (e) => {
+    e.preventDefault(); // ✋ Evita que el <a href="#"> recargue la página
+
+    if (!datosUsuario.nombre || !datosUsuario.email || !datosUsuario.tipo) {
+      mensaje.textContent = "Primero llena el formulario correctamente.";
+      mensaje.style.color = "#d32f2f";
+      return;
+    }
+
+    const enlacePago = links[datosUsuario.tipo];
+    if (enlacePago) {
+      window.open(enlacePago, "_blank");
+    } else {
+      mensaje.textContent = "Error al generar el enlace de pago.";
+      mensaje.style.color = "#d32f2f";
+    }
+  });
 });
