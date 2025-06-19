@@ -1,4 +1,15 @@
 
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  background-color: #ff0077;
+  color: #fff;
+  border: none;
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -49,17 +60,6 @@ section {
 }
 
 input, select, button {
-  width: 100%;
-  max-width: 100%;
-  box-sizing: border-box;
-  padding: 10px;
-  margin: 10px 0;
-}
-
-button {
-  background-color: #ff0077;
-  color: #fff;
-  border: none;
   cursor: pointer;
 }
 
@@ -178,7 +178,7 @@ footer {
 }
 
 
-/* Botón de pago */
+/* BotÃ³n de pago */
 .boton-pago {
   display: inline-block;
   padding: 15px 35px;
@@ -198,7 +198,15 @@ footer {
   transform: scale(1.05);
   box-shadow: 0 0 30px #00ff80;
 }
-
+  
+#mensaje {
+  min-height: 40px; /* Espacio reservado para mensajes */
+  margin-top: 10px;
+  color: #00c853; /* Verde bonito por defecto */
+  text-align: center;
+  font-weight: bold;
+}
+  
 /* Contador */
 #contador {
   font-size: 2em;
