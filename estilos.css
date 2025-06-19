@@ -1,232 +1,108 @@
-/* Reset básico */
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 
-body {
-  font-family: Arial, sans-serif;
-  background-color: #111;
-  color: #fff;
-  line-height: 1.6;
-}
+const firebaseConfig = {
+  apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
+  authDomain: "geeklandfest.firebaseapp.com",
+  projectId: "geeklandfest",
+  storageBucket: "geeklandfest.appspot.com",
+  messagingSenderId: "291993453509",
+  appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
+};
 
-/* HEADER */
-header {
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  padding: 40px 20px;
-}
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
-header img {
-  max-width: 200px;
-}
+const formulario = document.getElementById("formulario-boletos");
+const mensaje = document.getElementById("mensaje");
+const botonPago = document.querySelector(".boton-pago");
 
-/* BANNER */
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-  margin: auto;
-}
+// Estado de reserva
+let registroExitoso = false;
 
-/* SECCIÓN ACERCA */
-#acerca {
-  background-color: #111;
-  color: #fff;
-  padding: 50px 20px;
-  max-width: 900px;
-  margin: 0 auto;
-  text-align: center;
-  font-size: 1.1em;
-}
+// Deshabilitar botón al inicio
+botonPago.style.pointerEvents = "none";
+botonPago.style.opacity = "0.5";
 
-#acerca h2 {
-  font-size: 2em;
-  margin-bottom: 20px;
-}
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
 
-#acerca ul {
-  list-style: disc;
-  text-align: left;
-  padding-left: 20px;
-  margin: 20px auto;
-  display: inline-block;
-}
+  const nombre = document.getElementById("nombre").value.trim();
+  const email = document.getElementById("email").value.trim();
+  const tipo = document.getElementById("tipo").value;
 
-#acerca ul li {
-  margin-bottom: 10px;
-}
-
-/* SECCIÓN UBICACIÓN */
-#ubicacion {
-  text-align: center;
-  padding: 60px 40px;
-}
-
-/* BOTÓN MAPS */
-.boton-maps {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 18px 35px;
-  background-color: #ff0077;
-  color: white;
-  text-decoration: none;
-  font-weight: bold;
-  border-radius: 8px;
-  font-size: 1.6em;
-  position: relative;
-  box-shadow: 0 0 15px #ff0077;
-  transition: transform 0.2s ease;
-  overflow: hidden;
-}
-
-.boton-maps:hover {
-  transform: scale(1.05);
-  background-color: #cc0060;
-  box-shadow: 0 0 20px #ff0077, 0 0 40px #ff0077;
-}
-
-.pulsante::after {
-  content: "";
-  position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(circle, rgba(255,0,119,0.3) 0%, transparent 80%);
-  animation: pulso 2s infinite;
-  z-index: 0;
-}
-
-.boton-maps span,
-.boton-maps img {
-  position: relative;
-  z-index: 1;
-}
-
-.icono-maps {
-  width: 20px;
-  height: 20px;
-}
-
-/* SECCIÓN BOLETOS */
-#boletos {
-  padding: 40px 20px;
-  max-width: 600px;
-  margin: 0 auto;
-  text-align: center;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input, select, button {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 5px;
-  border: none;
-  width: 100%;
-}
-
-input, select {
-  background-color: #222;
-  color: #fff;
-}
-
-button {
-  background-color: #ff0077;
-  color: #fff;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #cc0060;
-}
-
-/* BOTÓN PAGO */
-.boton-pago {
-  display: inline-block;
-  padding: 15px 35px;
-  background-color: #00c853;
-  color: white;
-  font-weight: bold;
-  border-radius: 10px;
-  text-decoration: none;
-  font-size: 1.3em;
-  margin-top: 20px;
-  box-shadow: 0 0 15px #00c853;
-  transition: transform 0.2s ease;
-}
-
-.boton-pago:hover {
-  background-color: #00a543;
-  transform: scale(1.05);
-  box-shadow: 0 0 30px #00ff80;
-}
-
-/* MENSAJES */
-#mensaje {
-  min-height: 1.5em;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #d32f2f;
-  text-align: center;
-  transition: opacity 0.3s ease-in-out;
-}
-
-/* CONTADOR */
-#contador {
-  font-size: 2em;
-  text-align: center;
-  margin: 40px auto 20px;
-  color: #ff0077;
-  animation: pulso 1.5s infinite;
-}
-
-@keyframes pulso {
-  0% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.85; }
-  100% { transform: scale(1); opacity: 1; }
-}
-
-/* FOOTER */
-footer {
-  background-color: #222;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9em;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
+  // Validación básica
+  if (nombre === "" || email === "") {
+    mensaje.textContent = "Por favor completa todos los campos.";
+    mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
+    return;
   }
 
-  header {
-    padding: 20px 10px;
+  // Validación de email
+  const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+  if (!emailValido) {
+    mensaje.textContent = "Correo electrónico no válido.";
+    mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
+    return;
   }
 
-  #acerca, section, form {
-    padding: 20px 10px;
-    width: 100%;
+  try {
+    await addDoc(collection(db, "registros"), {
+      nombre,
+      email,
+      tipo,
+      fecha: serverTimestamp(),
+    });
+
+    mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
+    mensaje.style.color = "#00c853";
+
+    // Habilitar botón de pago
+    botonPago.style.pointerEvents = "auto";
+    botonPago.style.opacity = "1";
+    registroExitoso = true;
+
+  } catch (error) {
+    console.error("Error al guardar en Firestore:", error);
+    mensaje.textContent = "Error al guardar datos. Intenta más tarde.";
+    mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
+  }
+});
+
+botonPago.addEventListener("click", (e) => {
+  e.preventDefault();
+
+  if (!registroExitoso) {
+    mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
+    mensaje.style.color = "#d32f2f";
+    return;
   }
 
-  input, select, button {
-    font-size: 16px;
+  const tipo = document.getElementById("tipo").value;
+  let url = "";
+
+  switch (tipo) {
+    case "preventa":
+      url = "https://mpago.li/1jMDkrG";
+      break;
+    case "Preventa vip":
+      url = "https://mpago.la/2Xji7Dh";
+      break;
+    case "Preventa VIP Pass 2 day":
+      url = "https://mpago.la/173GLyx";
+      break;
+    case "Ultimate Pass Vip":
+      url = "https://mpago.la/32JN1nz";
+      break;
   }
 
-  footer {
-    padding: 15px;
-    font-size: 0.8em;
+  if (url) {
+    window.open(url, "_blank");
+  } else {
+    mensaje.textContent = "Selecciona un tipo de entrada válido.";
+    mensaje.style.color = "#d32f2f";
   }
-}
+});
