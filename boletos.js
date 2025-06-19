@@ -1,5 +1,3 @@
-// boletos.js
-
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 
@@ -19,7 +17,10 @@ const formulario = document.getElementById("formulario-boletos");
 const mensaje = document.getElementById("mensaje");
 const botonPago = document.querySelector(".boton-pago");
 
-// Deshabilitar botón de pago inicialmente
+// Estado de reserva
+let registroExitoso = false;
+
+// Deshabilitar botón al inicio
 botonPago.style.pointerEvents = "none";
 botonPago.style.opacity = "0.5";
 
@@ -30,18 +31,20 @@ formulario.addEventListener("submit", async (e) => {
   const email = document.getElementById("email").value.trim();
   const tipo = document.getElementById("tipo").value;
 
-  // Validaciones básicas
+  // Validación básica
   if (nombre === "" || email === "") {
-    mensaje.textContent = "Por favor, completa todos los campos.";
+    mensaje.textContent = "Por favor completa todos los campos.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
     return;
   }
 
-  // Validación de formato de email
+  // Validación de email
   const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!emailValido) {
     mensaje.textContent = "Correo electrónico no válido.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
     return;
   }
 
@@ -59,17 +62,24 @@ formulario.addEventListener("submit", async (e) => {
     // Habilitar botón de pago
     botonPago.style.pointerEvents = "auto";
     botonPago.style.opacity = "1";
+    registroExitoso = true;
 
   } catch (error) {
     console.error("Error al guardar en Firestore:", error);
-    mensaje.textContent = "Hubo un error. Intenta de nuevo más tarde.";
+    mensaje.textContent = "Error al guardar datos. Intenta más tarde.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
   }
 });
 
-// Redirección según opción elegida
 botonPago.addEventListener("click", (e) => {
   e.preventDefault();
+
+  if (!registroExitoso) {
+    mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
+    mensaje.style.color = "#d32f2f";
+    return;
+  }
 
   const tipo = document.getElementById("tipo").value;
   let url = "";
