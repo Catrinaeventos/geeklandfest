@@ -7,6 +7,21 @@
   <link rel="stylesheet" href="estilos.css" />
 </head>
 
+<!-- Modal de Confirmación -->
+<div id="modal-confirmacion" style="display: none;">
+  <div class="modal-contenido">
+    <h3>Confirma tus datos</h3>
+    <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
+    <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
+    <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
+    <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
+    <div class="botones-modal">
+      <button id="btn-cancelar">Cancelar</button>
+      <button id="btn-confirmar">Confirmar reserva</button>
+    </div>
+  </div>
+</div>
+  
 <body>
   <div id="contador"></div>
 
