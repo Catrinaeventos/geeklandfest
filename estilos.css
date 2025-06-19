@@ -42,4 +42,183 @@ header img {
 
 @keyframes pulso {
   0% { transform: scale(1); opacity: 1; }
-  50%
+  50% { transform: scale(1.05); opacity: 0.85; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ======= SECCIONES ======= */
+section {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: auto;
+}
+
+#acerca h2, #ubicacion h2, #boletos h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+}
+
+#acerca ul {
+  list-style: disc;
+  padding-left: 40px;
+  margin: 20px 0;
+}
+
+#acerca ul li {
+  margin-bottom: 10px;
+}
+
+/* ======= UBICACIÓN / MAPS ======= */
+#ubicacion {
+  text-align: center;
+}
+
+.boton-maps {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 18px 35px;
+  background-color: #ff0077;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  font-size: 1.6em;
+  box-shadow: 0 0 15px #ff0077;
+  transition: transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.boton-maps:hover {
+  transform: scale(1.05);
+  background-color: #cc0060;
+  box-shadow: 0 0 20px #ff0077, 0 0 40px #ff0077;
+}
+
+.pulsante::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255,0,119,0.3) 0%, transparent 80%);
+  animation: pulso 2s infinite;
+  z-index: 0;
+}
+
+.boton-maps span,
+.boton-maps img {
+  position: relative;
+  z-index: 1;
+}
+
+.icono-maps {
+  width: 20px;
+  height: 20px;
+}
+
+/* ======= FORMULARIO BOLETOS ======= */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: none;
+  font-size: 1em;
+  box-sizing: border-box;
+}
+
+input, select {
+  background-color: #222;
+  color: #fff;
+  border: 1px solid #444;
+}
+
+button {
+  background-color: #ff0077;
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+button:hover {
+  background-color: #cc0060;
+}
+
+/* ======= BOTÓN DE PAGO ======= */
+.boton-pago {
+  display: inline-block;
+  padding: 15px 35px;
+  background-color: #00c853;
+  color: white;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  font-size: 1.3em;
+  margin-top: 20px;
+  box-shadow: 0 0 15px #00c853;
+  transition: transform 0.2s ease;
+}
+
+.boton-pago:hover {
+  background-color: #00a543;
+  transform: scale(1.05);
+  box-shadow: 0 0 30px #00ff80;
+}
+
+/* ======= MENSAJE DE VALIDACIÓN ======= */
+#mensaje {
+  min-height: 1.5em;
+  margin-top: 10px;
+  font-weight: bold;
+  color: #d32f2f;
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* ======= FOOTER ======= */
+footer {
+  background-color: #222;
+  text-align: center;
+  padding: 20px;
+  font-size: 0.9em;
+}
+
+/* ======= RESPONSIVE ======= */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    padding: 20px 10px;
+  }
+
+  section, form {
+    padding: 20px 10px;
+    width: 100%;
+  }
+
+  input, select, button {
+    font-size: 16px;
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 0.8em;
+  }
+}
