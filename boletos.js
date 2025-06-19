@@ -17,76 +17,93 @@ const formulario = document.getElementById("formulario-boletos");
 const mensaje = document.getElementById("mensaje");
 const botonPago = document.querySelector(".boton-pago");
 
-// Estado de reserva
+// Modal
+const modal = document.getElementById("modal-confirmacion");
+const confirmNombre = document.getElementById("confirm-nombre");
+const confirmEmail = document.getElementById("confirm-email");
+const confirmTipo = document.getElementById("confirm-tipo");
+const btnConfirmar = document.getElementById("btn-confirmar");
+const btnCancelar = document.getElementById("btn-cancelar");
+
+// Estado
+let datosReserva = {};
 let registroExitoso = false;
 
-// Deshabilitar botón al inicio
+// Deshabilita el botón de pago
 botonPago.style.pointerEvents = "none";
 botonPago.style.opacity = "0.5";
 
-formulario.addEventListener("submit", async (e) => {
+formulario.addEventListener("submit", (e) => {
   e.preventDefault();
 
   const nombre = document.getElementById("nombre").value.trim();
   const email = document.getElementById("email").value.trim();
   const tipo = document.getElementById("tipo").value;
 
-  // Validación básica
+  // Validaciones
   if (nombre === "" || email === "") {
     mensaje.textContent = "Por favor completa todos los campos.";
     mensaje.style.color = "#d32f2f";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
-    registroExitoso = false;
     return;
   }
 
-  // Validación de email
   const emailValido = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
   if (!emailValido) {
     mensaje.textContent = "Correo electrónico no válido.";
     mensaje.style.color = "#d32f2f";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
-    registroExitoso = false;
     return;
   }
 
+  // Mostrar modal con los datos
+  confirmNombre.textContent = nombre;
+  confirmEmail.textContent = email;
+  confirmTipo.textContent = tipo;
+  modal.style.display = "flex";
+
+  datosReserva = { nombre, email, tipo };
+});
+
+// Confirmación final del modal
+btnConfirmar.addEventListener("click", async () => {
+  modal.style.display = "none";
+
   try {
     await addDoc(collection(db, "registros"), {
-      nombre,
-      email,
-      tipo,
+      ...datosReserva,
       fecha: serverTimestamp(),
     });
 
     mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
     mensaje.style.color = "#00c853";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
-
-    // Habilitar botón de pago
-    botonPago.style.pointerEvents = "auto";
-    botonPago.style.opacity = "1";
     registroExitoso = true;
 
+    // Habilita el botón de pago
+    botonPago.style.pointerEvents = "auto";
+    botonPago.style.opacity = "1";
+
   } catch (error) {
-    console.error("Error al guardar en Firestore:", error);
-    mensaje.textContent = "Error al guardar datos. Intenta más tarde.";
+    console.error("Error en Firebase:", error);
+    mensaje.textContent = "Ocurrió un error al guardar tus datos.";
     mensaje.style.color = "#d32f2f";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
-    registroExitoso = false;
   }
 });
 
+// Cancelar modal
+btnCancelar.addEventListener("click", () => {
+  modal.style.display = "none";
+});
+
+// Botón de pago
 botonPago.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (!registroExitoso) {
-    mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
+    mensaje.textContent = "Primero registra tus datos.";
     mensaje.style.color = "#d32f2f";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
     return;
   }
 
-  const tipo = document.getElementById("tipo").value;
+  const tipo = datosReserva.tipo;
   let url = "";
 
   switch (tipo) {
@@ -109,7 +126,5 @@ botonPago.addEventListener("click", (e) => {
   } else {
     mensaje.textContent = "Selecciona un tipo de entrada válido.";
     mensaje.style.color = "#d32f2f";
-    mensaje.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 });
-
