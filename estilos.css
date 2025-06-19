@@ -1,277 +1,45 @@
- width: 100%;Add commentMore actions
-  max-width: 100%;
-/* Reset básico */
+/* ======= RESET GENERAL ======= */
 * {
   box-sizing: border-box;
-  padding: 10px;
-  margin: 10px 0;
   margin: 0;
   padding: 0;
 }
 
-button {
-  background-color: #ff0077;
-  color: #fff;
-  border: none;
 body {
   font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
   background-color: #111;
   color: #fff;
   line-height: 1.6;
 }
 
-/* HEADER */
-header {
-  background-color: #ffffff;
-  background-color: #fff;
-  color: #000;
-  text-align: center;
-  padding: 40px 20px;
-  color: #000;
-}
-
-header img {
-  max-width: 200px;
-}
-
-/* BANNER */
 img {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: auto;
 }
 
-/* SECCIÓN ACERCA */
-#acerca {
-  background-color: #111;
-  color: #fff;
-  padding: 50px 20px;
-  max-width: 900px;
-  margin: 0 auto;
+/* ======= HEADER ======= */
+header {
+  background-color: #fff;
+  color: #000;
   text-align: center;
-  line-height: 1.8;
-  font-size: 1.1em;
-}
-
-@@ -44,78 +51,22 @@ header {
-#acerca ul {
-  list-style: disc;
-  text-align: left;
-  display: inline-block;
-  padding-left: 20px;
-  margin: 20px 0;
-  margin: 20px auto;
-  display: inline-block;
-}
-
-#acerca ul li {
-  margin-bottom: 10px;
-}
-
-section {
-  padding: 20px;
-  max-width: 600px;
-  margin: auto;
-}
-
-input, select, button {
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #cc0060;
-}
-
-footer {
-  background-color: #222;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9em;
-}
-
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-
-  header {
-    padding: 20px 10px;
-  }
-
-  #acerca, section, form {
-    padding: 20px 10px;
-    width: 100%;
-  }
-
-  input, select, button {
-    font-size: 16px;
-  }
-
-  #acerca ul {
-    text-align: left;
-    padding-left: 20px;
-    display: block;
-  }
-
-  footer {
-    padding: 15px;
-    font-size: 0.8em;
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: auto;
-  }
-}
-
-/* SECCIÓN UBICACIÓN */
-#ubicacion {
-  text-align: center;
-  padding: 60px 40px;
-}
-
-/* BOTÓN MAPS */
-.boton-maps {
-  display: inline-flex;
-  align-items: center;
-@@ -157,28 +108,51 @@ footer {
-  z-index: 1;
-}
-
-@keyframes pulso {
-  0% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-  50% {
-    transform: scale(1.1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 0.5;
-  }
-}
-
-.icono-maps {
-  width: 20px;
-  height: 20px;
-}
-
-/* SECCIÓN BOLETOS */
-#boletos {
   padding: 40px 20px;
-  max-width: 600px;
+}
+
+header img {
+  max-width: 200px;
   margin: 0 auto;
-  text-align: center;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-input, select, button {
-  padding: 10px;
-  font-size: 1em;
-  border-radius: 5px;
-  border: none;
-  width: 100%;
-}
-
-/* Botón de pago */
-input, select {
-  background-color: #222;
-  color: #fff;
-}
-
-button {
-  background-color: #ff0077;
-  color: #fff;
-  font-weight: bold;
-  transition: background-color 0.3s ease;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #cc0060;
-}
-
-/* BOTÓN PAGO */
-.boton-pago {
-  display: inline-block;
-  padding: 15px 35px;
-@@ -198,25 +172,18 @@ footer {
-  transform: scale(1.05);
-  box-shadow: 0 0 30px #00ff80;
-}
-  
-#mensaje {
-  min-height: 40px; /* Espacio reservado para mensajes */
-  margin-top: 10px;
-  color: #00c853; /* Verde bonito por defecto */
-  text-align: center;
-  font-weight: bold;
-}
-
-/* MENSAJES */
-#mensaje {
-  min-height: 1.5em; /* espacio reservado para que no salte el diseño */
-  min-height: 1.5em;
-  margin-top: 10px;
-  font-weight: bold;
-  color: #d32f2f; /* rojo para errores */
-  color: #d32f2f;
-  text-align: center;
-  transition: opacity 0.3s ease-in-out;
-}
-
-  
-/* Contador */
-/* CONTADOR */
+/* ======= CONTADOR ======= */
 #contador {
   font-size: 2em;
   text-align: center;
-@@ -230,3 +197,36 @@ footer {
-  50% { transform: scale(1.05); opacity: 0.85; }
-  100% { transform: scale(1); opacity: 1; }
+  margin: 40px auto 20px;
+  color: #ff0077;
+  animation: pulso 1.5s infinite;
 }
 
-/* FOOTER */
-footer {
-  background-color: #222;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9em;
-}
-
-/* RESPONSIVE */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-
-  header {
-    padding: 20px 10px;
-  }
-
-  #acerca, section, form {
-    padding: 20px 10px;
-    width: 100%;
-  }
-
-  input, select, button {
-    font-size: 16px;
-  }
-
-  footer {
-    padding: 15px;
-    font-size: 0.8em;
-  }
-}
+@keyframes pulso {
+  0% { transform: scale(1); opacity: 1; }
+  50%
