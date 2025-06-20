@@ -1,6 +1,5 @@
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-import "https://cdn.emailjs.com/dist/email.min.js";
 
 // Configuración de Firebase
 const firebaseConfig = {
@@ -16,7 +15,7 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Inicializa EmailJS
-emailjs.init("sXw_FwbU1-ehORAve");
+window.emailjs.init("sXw_FwbU1-ehORAve");
 
 // Referencias
 const formulario = document.getElementById("formulario-boletos");
