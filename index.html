@@ -8,6 +8,8 @@
 </head>
 
 <body>
+  <div id="contador"></div>
+
   <!-- Modal de Confirmación -->
   <div id="modal-confirmacion" style="display: none;">
     <div class="modal-contenido">
@@ -22,8 +24,6 @@
       </div>
     </div>
   </div>
-
-  <div id="contador"></div>
 
   <header>
     <img src="logo.png" alt="Logo Geekland Fest" style="max-width: 200px;" />
@@ -125,7 +125,6 @@
       const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
       const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
 
-      
       document.getElementById("contador").innerHTML =
         `Faltan ${dias}d ${horas}h ${minutos}m ${segundos}s`;
 
