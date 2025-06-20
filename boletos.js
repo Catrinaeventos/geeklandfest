@@ -1,9 +1,8 @@
-// ✅ IMPORTS SIEMPRE VAN FUERA
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 import emailjs from "https://cdn.emailjs.com/dist/email.min.js";
 
-// ✅ INICIALIZACIÓN DE SERVICIOS
+// Inicializar Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
   authDomain: "geeklandfest.firebaseapp.com",
@@ -12,25 +11,27 @@ const firebaseConfig = {
   messagingSenderId: "291993453509",
   appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
 };
-
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Inicializar EmailJS
 emailjs.init("sXw_FwbU1-ehORAve");
 
-// ✅ TODO LO DEMÁS DENTRO DE DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario-boletos");
   const mensaje = document.getElementById("mensaje");
   const botonPago = document.querySelector(".boton-pago");
-
   let registroExitoso = false;
 
-  // Deshabilitar botón al inicio
+  // Modal
+  const modal = document.getElementById("modal-confirmacion");
+  const btnCancelar = document.getElementById("btn-cancelar");
+  const btnConfirmar = document.getElementById("btn-confirmar");
+
   botonPago.style.pointerEvents = "none";
   botonPago.style.opacity = "0.5";
 
-  formulario.addEventListener("submit", async (e) => {
+  formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
     const nombre = document.getElementById("nombre").value.trim();
@@ -40,7 +41,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (nombre === "" || email === "") {
       mensaje.textContent = "Por favor completa todos los campos.";
       mensaje.style.color = "#d32f2f";
-      registroExitoso = false;
       return;
     }
 
@@ -48,9 +48,25 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!emailValido) {
       mensaje.textContent = "Correo electrónico no válido.";
       mensaje.style.color = "#d32f2f";
-      registroExitoso = false;
       return;
     }
+
+    // Mostrar datos en el modal antes de confirmar
+    document.getElementById("confirm-nombre").textContent = nombre;
+    document.getElementById("confirm-email").textContent = email;
+    document.getElementById("confirm-tipo").textContent = tipo;
+
+    modal.style.display = "block";
+  });
+
+  btnCancelar.addEventListener("click", () => {
+    modal.style.display = "none";
+  });
+
+  btnConfirmar.addEventListener("click", async () => {
+    const nombre = document.getElementById("nombre").value.trim();
+    const email = document.getElementById("email").value.trim();
+    const tipo = document.getElementById("tipo").value;
 
     try {
       await addDoc(collection(db, "registros"), {
@@ -60,16 +76,14 @@ document.addEventListener("DOMContentLoaded", () => {
         fecha: serverTimestamp(),
       });
 
-      // Enviar correo de confirmación
       await emailjs.send("service_uwh60xc", "template_id0h2p9", {
-        nombre: nombre,
-        email: email,
-        tipo: tipo,
+        nombre,
+        email,
+        tipo,
       });
 
       mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
       mensaje.style.color = "#00c853";
-
       botonPago.style.pointerEvents = "auto";
       botonPago.style.opacity = "1";
       registroExitoso = true;
@@ -80,6 +94,8 @@ document.addEventListener("DOMContentLoaded", () => {
       mensaje.style.color = "#d32f2f";
       registroExitoso = false;
     }
+
+    modal.style.display = "none";
   });
 
   botonPago.addEventListener("click", (e) => {
@@ -105,4 +121,15 @@ document.addEventListener("DOMContentLoaded", () => {
         url = "https://mpago.la/173GLyx";
         break;
       case "Ultimate Pass Vip":
-        url = "https://mpag
+        url = "https://mpago.la/32JN1nz";
+        break;
+    }
+
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      mensaje.textContent = "Selecciona un tipo de entrada válido.";
+      mensaje.style.color = "#d32f2f";
+    }
+  });
+});
