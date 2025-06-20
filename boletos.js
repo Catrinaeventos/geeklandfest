@@ -1,8 +1,8 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
-import { EmailJSResponseStatus } from "https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import "https://cdn.emailjs.com/dist/email.min.js";
 
-// Inicializar Firebase
+// Configuración de Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
   authDomain: "geeklandfest.firebaseapp.com",
@@ -15,21 +15,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Inicializar EmailJS v4
-import * as emailjs from 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
-emailjs.init('sXw_FwbU1-ehORAve'); // tu public key
+// Inicializa EmailJS
+emailjs.init("sXw_FwbU1-ehORAve");
 
+// Referencias
 const formulario = document.getElementById("formulario-boletos");
 const mensaje = document.getElementById("mensaje");
 const botonPago = document.querySelector(".boton-pago");
 
 let registroExitoso = false;
 
-// Desactivar botón de pago al inicio
+// Deshabilita botón de pago al inicio
 botonPago.style.pointerEvents = "none";
 botonPago.style.opacity = "0.5";
 
-// Evento submit del formulario
+// Evento para enviar datos
 formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
 
@@ -61,7 +61,7 @@ formulario.addEventListener("submit", async (e) => {
       fecha: serverTimestamp(),
     });
 
-    // Enviar email de confirmación
+    // Enviar correo
     await emailjs.send("service_uwh60xc", "template_id0h2p9", {
       nombre: nombre,
       email: email,
@@ -71,7 +71,7 @@ formulario.addEventListener("submit", async (e) => {
     mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
     mensaje.style.color = "#00c853";
 
-    // Activar botón de pago
+    // Habilitar botón de pago
     botonPago.style.pointerEvents = "auto";
     botonPago.style.opacity = "1";
     registroExitoso = true;
@@ -84,12 +84,12 @@ formulario.addEventListener("submit", async (e) => {
   }
 });
 
-// Evento del botón de pago
+// Redirigir a Mercado Pago solo si ya se registró
 botonPago.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (!registroExitoso) {
-    mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
+    mensaje.textContent = "Primero debes completar el registro.";
     mensaje.style.color = "#d32f2f";
     return;
   }
