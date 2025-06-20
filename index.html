@@ -133,7 +133,12 @@
       }
     }, 1000);
   </script>
-<script src="https://cdn.emailjs.com/dist/email.min.js"></script>
+<script type="module">
+  import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
+  emailjs.init('sXw_FwbU1-ehORAve');
+  window.emailjs = emailjs; // lo hacemos global para usarlo en otros scripts
+</script>
+
   <!-- Formulario JS -->
   <script src="boletos.js" type="module"></script>
 </body>
