@@ -6,74 +6,36 @@
   <title>Geekland Fest</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
-
-<!-- Modal de Confirmación -->
-<div id="modal-confirmacion" style="display: none;">
-  <div class="modal-contenido">
-    <h3>Confirma tus datos</h3>
-    <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
-    <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
-    <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
-    <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
-    <div class="botones-modal">
-      <button id="btn-cancelar">Cancelar</button>
-      <button id="btn-confirmar">Confirmar reserva</button>
+<body>
+  <!-- Modal de Confirmación -->
+  <div id="modal-confirmacion" style="display: none;">
+    <div class="modal-contenido">
+      <h3>Confirma tus datos</h3>
+      <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
+      <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
+      <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
+      <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
+      <div class="botones-modal">
+        <button id="btn-cancelar">Cancelar</button>
+        <button id="btn-confirmar">Confirmar reserva</button>
+      </div>
     </div>
   </div>
-</div>
-  
-<body>
-  <div id="contador"></div>
 
+  <div id="contador"></div>
   <header>
     <img src="logo.png" alt="Logo Geekland Fest" style="max-width: 200px;" />
     <h1>Geekland Fest 2025</h1>
     <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
   </header>
-
   <img src="banner.jpg" style="width: 100%; height: auto; display: block;" />
-
-  <section id="acerca">
-    <h2>¿Qué es Geekland Fest?</h2>
-    <p>
-      Geekland Fest es mucho más que un evento, es el punto de encuentro definitivo para la comunidad geek en Monterrey. Celebrado los días 1 y 2 de noviembre en la emblemática Casa del Obrero CTM, este festival reúne lo mejor del anime, los videojuegos, el cosplay, la cultura pop y el entretenimiento alternativo, en una experiencia única para fans de todas las edades.
-    </p>
-    <p>Durante dos días vibrantes, los asistentes podrán disfrutar de una gran variedad de actividades como:</p>
-    <ul>
-      <li>Exhibiciones y concursos de cosplay</li>
-      <li>Lucha libre, box y espectáculos en vivo</li>
-      <li>Torneos de videojuegos como Smash, KOF y más</li>
-      <li>Concurso de Catrinas y espectáculo de fuego</li>
-      <li>Firma de autógrafos con invitados especiales</li>
-      <li>Activaciones de K-pop, rifas y lotería</li>
-      <li>Zona de artistas, creativos y tiendas con productos únicos</li>
-    </ul>
-    <p>
-      Con un horario de <strong>12:00 p.m. a 10:00 p.m. el sábado</strong> y de <strong>12:00 p.m. a 8:00 p.m. el domingo</strong>, Geekland Fest es el lugar perfecto para vivir tu pasión al máximo.
-    </p>
-    <p>
-      ¡Ven con tu cosplay, tu energía y tu amor por la cultura geek, y forma parte de esta aventura épica!
-    </p>
-  </section>
-
-  <section id="ubicacion">
-    <h2>Ubicación del evento</h2>
-    <p>Casa del Obrero CTM, Monterrey</p>
-    <a href="https://maps.app.goo.gl/bVWHwXy3JDUHRQWVA" target="_blank" class="boton-maps pulsante">
-      <img src="pin.png" alt="Icono de ubicación" class="icono-maps" />
-      <span>Cómo llegar</span>
-    </a>
-  </section>
-
   <section id="boletos">
     <h2>Preventa de boletos</h2>
     <form id="formulario-boletos">
       <label for="nombre">Nombre completo:</label>
       <input type="text" id="nombre" name="nombre" required />
-
       <label for="email">Correo electrónico:</label>
       <input type="email" id="email" name="email" required />
-
       <label for="tipo">Venta De Preventas:</label>
       <select id="tipo" name="tipo">
         <option value="preventa">Preventa - $120</option>
@@ -81,62 +43,11 @@
         <option value="Preventa VIP Pass 2 day">VIP Pass 2 day - $1000</option>
         <option value="Ultimate Pass Vip">Ultimate Pass Vip - $3000</option>
       </select>
-
       <button type="submit">Reservar</button>
     </form>
-
-    <!-- CAMBIADO DE <a> A <button> -->
     <button type="button" class="boton-pago">Pagar ahora</button>
-
     <div id="mensaje"></div>
   </section>
-
-  <footer>
-    <p>Síguenos en Facebook: www.facebook.com/CatrinaFestGaming</p>
-    <p>Síguenos en Instagram: @Catrinafestgaming_</p>
-    <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
-  </footer>
-
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
-      authDomain: "geeklandfest.firebaseapp.com",
-      projectId: "geeklandfest",
-      storageBucket: "geeklandfest.appspot.com",
-      messagingSenderId: "291993453509",
-      appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
-    };
-
-    const app = initializeApp(firebaseConfig);
-  </script>
-
-  <!-- Contador -->
-  <script>
-    const fechaEvento = new Date("November 1, 2025 12:00:00").getTime();
-
-    const cuentaAtras = setInterval(() => {
-      const ahora = new Date().getTime();
-      const diferencia = fechaEvento - ahora;
-
-      const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-      const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-      const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-      document.getElementById("contador").innerHTML =
-        `Faltan ${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-      if (diferencia < 0) {
-        clearInterval(cuentaAtras);
-        document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
-      }
-    }, 1000);
-  </script>
-
-  <!-- Formulario JS -->
   <script src="boletos.js" type="module"></script>
 </body>
 </html>
