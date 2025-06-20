@@ -23,7 +23,9 @@
       </div>
     </div>
   </div>
+
   <div id="contador"></div>
+
   <header>
     <img src="logo.png" alt="Logo Geekland Fest" style="max-width: 200px;" />
     <h1>Geekland Fest 2025</h1>
@@ -95,26 +97,9 @@
     <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
   </footer>
 
-  <!-- Firebase -->
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
-      authDomain: "geeklandfest.firebaseapp.com",
-      projectId: "geeklandfest",
-      storageBucket: "geeklandfest.appspot.com",
-      messagingSenderId: "291993453509",
-      appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac"
-    };
-
-    const app = initializeApp(firebaseConfig);
-  </script>
-
   <!-- Contador -->
   <script>
     const fechaEvento = new Date("November 1, 2025 12:00:00").getTime();
-
     const cuentaAtras = setInterval(() => {
       const ahora = new Date().getTime();
       const diferencia = fechaEvento - ahora;
@@ -133,11 +118,9 @@
       }
     }, 1000);
   </script>
-<script src="https://cdn.emailjs.com/sdk/4.0/email.min.js"></script>
-<script>
-  emailjs.init("sXw_FwbU1-ehORAve");
-</script>
-  <!-- Formulario JS -->
-  <script src="boletos.js" type="module"></script>
+
+  <!-- Script principal -->
+  <script src="boletos.js"></script>
 </body>
 </html>
+
