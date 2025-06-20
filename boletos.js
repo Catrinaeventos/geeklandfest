@@ -14,20 +14,19 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
-// Inicializar EmailJS
 emailjs.init("sXw_FwbU1-ehORAve");
 
 document.addEventListener("DOMContentLoaded", () => {
   const formulario = document.getElementById("formulario-boletos");
   const mensaje = document.getElementById("mensaje");
   const botonPago = document.querySelector(".boton-pago");
-  let registroExitoso = false;
-
-  // Modal
   const modal = document.getElementById("modal-confirmacion");
   const btnCancelar = document.getElementById("btn-cancelar");
   const btnConfirmar = document.getElementById("btn-confirmar");
 
+  let registroExitoso = false;
+
+  // Oculta y desactiva el botón de pago al inicio
   botonPago.style.pointerEvents = "none";
   botonPago.style.opacity = "0.5";
 
@@ -51,12 +50,11 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Mostrar datos en el modal antes de confirmar
+    // Muestra datos en modal
     document.getElementById("confirm-nombre").textContent = nombre;
     document.getElementById("confirm-email").textContent = email;
     document.getElementById("confirm-tipo").textContent = tipo;
-
-    modal.style.display = "block";
+    modal.style.display = "flex"; // Mostrar el modal
   });
 
   btnCancelar.addEventListener("click", () => {
@@ -87,7 +85,6 @@ document.addEventListener("DOMContentLoaded", () => {
       botonPago.style.pointerEvents = "auto";
       botonPago.style.opacity = "1";
       registroExitoso = true;
-
     } catch (error) {
       console.error("Error al guardar o enviar correo:", error);
       mensaje.textContent = "Ocurrió un error. Intenta más tarde.";
@@ -133,3 +130,4 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
