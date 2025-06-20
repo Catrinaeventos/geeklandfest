@@ -1,6 +1,8 @@
 import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore.js";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/11.9.1/firebase-app.js";
+import emailjs from "https://cdn.emailjs.com/dist/email.min.js";
 
+// Inicializa Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
   authDomain: "geeklandfest.firebaseapp.com",
@@ -13,37 +15,30 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
+// Inicializa EmailJS con tu public key
+emailjs.init("sXw_FwbU1-ehORAve");
+
 const formulario = document.getElementById("formulario-boletos");
 const mensaje = document.getElementById("mensaje");
 const botonPago = document.querySelector(".boton-pago");
 
-// Modal
-const modal = document.getElementById("modal-confirmacion");
-const confirmNombre = document.getElementById("confirm-nombre");
-const confirmEmail = document.getElementById("confirm-email");
-const confirmTipo = document.getElementById("confirm-tipo");
-const btnConfirmar = document.getElementById("btn-confirmar");
-const btnCancelar = document.getElementById("btn-cancelar");
-
-// Estado
-let datosReserva = {};
 let registroExitoso = false;
 
-// Deshabilita el botón de pago
+// Deshabilitar botón al inicio
 botonPago.style.pointerEvents = "none";
 botonPago.style.opacity = "0.5";
 
-formulario.addEventListener("submit", (e) => {
+formulario.addEventListener("submit", async (e) => {
   e.preventDefault();
 
   const nombre = document.getElementById("nombre").value.trim();
   const email = document.getElementById("email").value.trim();
   const tipo = document.getElementById("tipo").value;
 
-  // Validaciones
   if (nombre === "" || email === "") {
     mensaje.textContent = "Por favor completa todos los campos.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
     return;
   }
 
@@ -51,59 +46,50 @@ formulario.addEventListener("submit", (e) => {
   if (!emailValido) {
     mensaje.textContent = "Correo electrónico no válido.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
     return;
   }
 
-  // Mostrar modal con los datos
-  confirmNombre.textContent = nombre;
-  confirmEmail.textContent = email;
-  confirmTipo.textContent = tipo;
-  modal.style.display = "flex";
-
-  datosReserva = { nombre, email, tipo };
-});
-
-// Confirmación final del modal
-btnConfirmar.addEventListener("click", async () => {
-  modal.style.display = "none";
-
   try {
     await addDoc(collection(db, "registros"), {
-      ...datosReserva,
+      nombre,
+      email,
+      tipo,
       fecha: serverTimestamp(),
+    });
+
+    // Enviar correo de confirmación
+    await emailjs.send("service_uwh60xc", "template_id0h2p9", {
+      nombre: nombre,
+      email: email,
+      tipo: tipo,
     });
 
     mensaje.textContent = "Registro exitoso. ¡Gracias por tu reserva!";
     mensaje.style.color = "#00c853";
-    registroExitoso = true;
 
-    // Habilita el botón de pago
     botonPago.style.pointerEvents = "auto";
     botonPago.style.opacity = "1";
+    registroExitoso = true;
 
   } catch (error) {
-    console.error("Error en Firebase:", error);
-    mensaje.textContent = "Ocurrió un error al guardar tus datos.";
+    console.error("Error al guardar o enviar correo:", error);
+    mensaje.textContent = "Ocurrió un error. Intenta más tarde.";
     mensaje.style.color = "#d32f2f";
+    registroExitoso = false;
   }
 });
 
-// Cancelar modal
-btnCancelar.addEventListener("click", () => {
-  modal.style.display = "none";
-});
-
-// Botón de pago
 botonPago.addEventListener("click", (e) => {
   e.preventDefault();
 
   if (!registroExitoso) {
-    mensaje.textContent = "Primero registra tus datos.";
+    mensaje.textContent = "Por favor, registra tus datos antes de pagar.";
     mensaje.style.color = "#d32f2f";
     return;
   }
 
-  const tipo = datosReserva.tipo;
+  const tipo = document.getElementById("tipo").value;
   let url = "";
 
   switch (tipo) {
