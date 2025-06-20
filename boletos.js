@@ -15,7 +15,6 @@ const app = initializeApp(firebaseConfig);
 const db = getFirestore(app);
 
 // Inicializa EmailJS
-window.emailjs.init("sXw_FwbU1-ehORAve");
 
 // Referencias
 const formulario = document.getElementById("formulario-boletos");
