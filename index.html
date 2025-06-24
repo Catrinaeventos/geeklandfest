@@ -7,7 +7,6 @@
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-
   <!-- Modal de Confirmación -->
   <div id="modal-confirmacion" style="display: none;">
     <div class="modal-contenido">
@@ -26,16 +25,19 @@
   <div id="contador"></div>
 
   <header>
-    <img src="logo.png" alt="Logo Geekland Fest" />
+    <img src="logo.png" alt="Logo Geekland Fest" style="max-width: 200px;" />
     <h1>Geekland Fest 2025</h1>
     <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
   </header>
 
-  <img src="banner.jpg" alt="Banner" />
+  <img src="banner.jpg" style="width: 100%; height: auto; display: block;" />
 
   <section id="acerca">
     <h2>¿Qué es Geekland Fest?</h2>
-    <p>Geekland Fest es mucho más que un evento...</p>
+    <p>
+      Geekland Fest es mucho más que un evento, es el punto de encuentro definitivo para la comunidad geek en Monterrey. Celebrado los días 1 y 2 de noviembre en la emblemática Casa del Obrero CTM, este festival reúde lo mejor del anime, los videojuegos, el cosplay, la cultura pop y el entretenimiento alternativo, en una experiencia única para fans de todas las edades.
+    </p>
+    <p>Durante dos días vibrantes, los asistentes podrán disfrutar de una gran variedad de actividades como:</p>
     <ul>
       <li>Exhibiciones y concursos de cosplay</li>
       <li>Lucha libre, box y espectáculos en vivo</li>
@@ -45,7 +47,12 @@
       <li>Activaciones de K-pop, rifas y lotería</li>
       <li>Zona de artistas, creativos y tiendas con productos únicos</li>
     </ul>
-    <p>¡Ven con tu cosplay y forma parte de esta aventura épica!</p>
+    <p>
+      Con un horario de <strong>12:00 p.m. a 10:00 p.m. el sábado</strong> y de <strong>12:00 p.m. a 8:00 p.m. el domingo</strong>, Geekland Fest es el lugar perfecto para vivir tu pasión al máximo.
+    </p>
+    <p>
+      ¡Ven con tu cosplay, tu energía y tu amor por la cultura geek, y forma parte de esta aventura épica!
+    </p>
   </section>
 
   <section id="ubicacion">
@@ -85,7 +92,7 @@
   <footer>
     <p>Síguenos en Facebook: www.facebook.com/CatrinaFestGaming</p>
     <p>Síguenos en Instagram: @Catrinafestgaming_</p>
-    <p>Contacto: katycatrinagamingcosplayer@gmail.com</p>
+    <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
   </footer>
 
   <!-- Contador -->
@@ -110,18 +117,23 @@
     }, 1000);
   </script>
 
-  <!-- Firebase y EmailJS desde CDN -->
+  <!-- Firebase y EmailJS (v4 desde CDN) -->
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
- <script type="module">
-  import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
 
-  emailjs.init("sXw_FwbU1-ehORAve");
+  <script type="module">
+    import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
+    emailjs.init("sXw_FwbU1-ehORAve");
 
-  window.enviarCorreo = (templateParams) => {
-    return emailjs.send("service_uwh60xc", "template_id0h2p9", templateParams);
-  };
-</script>
+    window.enviarCorreo = (params) => {
+      return emailjs.send("service_uwh60xc", "template_id0h2p9", params);
+    };
+  </script>
+
+  <!-- Script principal -->
+  <script src="boletos.js"></script>
+</body>
+</html>
 
   <!-- Script principal -->
   <script src="boletos.js"></script>
