@@ -121,15 +121,13 @@
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
 
-  <script type="module">
-    import emailjs from 'https://cdn.emailjs.com/dist/email.min.mjs';
-    emailjs.init("sXw_FwbU1-ehORAve");
-
-    window.enviarCorreo = (params) => {
-      return emailjs.send("service_uwh60xc", "template_id0h2p9", params);
-    };
-  </script>
-
+<!-- EmailJS SDK v4 (recomendado) -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    emailjs.init("sXw_FwbU1-ehORAve"); // Tu Public Key
+  });
+</script>
   <!-- Script principal -->
   <script src="boletos.js"></script>
 </body>
