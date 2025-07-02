@@ -1,6 +1,5 @@
-// Espera a que todo el DOM esté cargado
 document.addEventListener("DOMContentLoaded", () => {
-  // Configurar Firebase
+  // Configuración de Firebase
   const firebaseConfig = {
     apiKey: "AIzaSyBL3WnHWVkTo5ejHj5ueCu7FLm6u0uCkFM",
     authDomain: "geeklandfest.firebaseapp.com",
@@ -10,13 +9,13 @@ document.addEventListener("DOMContentLoaded", () => {
     appId: "1:291993453509:web:a8d6553f11b2d8b2e0c1ac",
   };
 
-  // Inicializa Firebase y Firestore
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
   // Inicializa EmailJS
   emailjs.init("sXw_FwbU1-ehORAve");
 
+  // Elementos del DOM
   const formulario = document.getElementById("formulario-boletos");
   const mensaje = document.getElementById("mensaje");
   const botonPago = document.querySelector(".boton-pago");
@@ -31,12 +30,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   let datosTemporales = {};
   let registroExitoso = false;
+  let correoEnviado = false; // Evita duplicación
 
-  // Desactiva el botón de pago
+  // Desactiva el botón de pago desde el inicio
   botonPago.style.pointerEvents = "none";
   botonPago.style.opacity = "0.5";
 
-  // Validación + mostrar modal
+  // Validación y mostrar modal
   formulario.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Mostrar datos en el modal
+    // Guardamos datos y abrimos modal
     datosTemporales = { nombre, email, tipo };
     confirmNombre.textContent = nombre;
     confirmEmail.textContent = email;
@@ -65,17 +65,20 @@ document.addEventListener("DOMContentLoaded", () => {
     modal.style.display = "flex";
   });
 
-  // Cierra el modal
+  // Cancelar modal
   btnCancelar.addEventListener("click", () => {
     modal.style.display = "none";
   });
 
-  // Confirma reserva y guarda en Firebase + correo
+  // Confirmar reserva y enviar correo
   btnConfirmar.addEventListener("click", async () => {
+    if (correoEnviado) return;
+
     modal.style.display = "none";
     mensaje.textContent = "Procesando...";
 
     try {
+      // Guardar en Firestore
       await db.collection("registros").add({
         nombre: datosTemporales.nombre,
         email: datosTemporales.email,
@@ -83,6 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
         fecha: new Date(),
       });
 
+      // Enviar correo
       await emailjs.send("service_uwh60xc", "template_id0h2p9", {
         nombre: datosTemporales.nombre,
         email: datosTemporales.email,
@@ -95,6 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
       botonPago.style.pointerEvents = "auto";
       botonPago.style.opacity = "1";
       registroExitoso = true;
+      correoEnviado = true;
     } catch (error) {
       console.error("Error al registrar o enviar correo:", error);
       mensaje.textContent = "Ocurrió un error. Intenta más tarde.";
@@ -102,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Enlace de pago
+  // Botón de pago
   botonPago.addEventListener("click", (e) => {
     e.preventDefault();
 
