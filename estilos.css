@@ -18,51 +18,82 @@ img {
   display: block;
 }
 
-/* ===== CABECERA CON PATROCINADORES ===== */
+/* ===== PATROCINADORES HEADER ===== */
 .header-patrocinadores {
   background-color: #fff;
-  color: #000;
+  padding: 20px;
   text-align: center;
-  padding: 30px 20px;
-  border-bottom: 5px solid #ff0077;
+  color: #000;
 }
 
-.texto-invitacion {
-  font-size: 1.2em;
-  font-weight: bold;
-  margin-bottom: 20px;
+.patrocinadores {
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
   justify-content: center;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 20px;
 }
 
-.texto-invitacion img {
-  height: 80px;
-  width: auto;
-  object-fit: contain;
-  transition: transform 0.3s ease;
+.patrocinador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 120px;
 }
 
-.texto-invitacion img:hover {
+.patrocinador img {
+  width: 100px;
+  height: auto;
+  margin-bottom: 5px;
+  transition: transform 0.3s;
+}
+
+.patrocinador img:hover {
   transform: scale(1.1);
+}
+
+.patrocinador span {
+  font-size: 0.9em;
+  font-weight: bold;
+  text-align: center;
+  margin-top: 5px;
+  color: #333;
+}
+
+.texto-invitacion h2 {
+  font-size: 1.8em;
+  color: #ff0077;
+  text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+  margin-bottom: 20px;
 }
 
 .logo-evento img {
   max-width: 200px;
-  margin: 0 auto 15px;
-  display: block;
+  margin: 0 auto;
 }
 
 .logo-evento h1 {
-  font-size: 2em;
-  margin: 0;
+  font-size: 2.5em;
+  margin-top: 10px;
+  color: #000;
 }
 
 .logo-evento p {
-  margin: 5px 0 0;
-  font-size: 1em;
+  color: #333;
+  margin-top: 5px;
+}
+
+/* ===== HEADER GENERAL ===== */
+header {
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  padding: 40px 20px;
+}
+
+header img {
+  max-width: 200px;
+  margin: 0 auto;
 }
 
 /* ===== CONTADOR ===== */
@@ -237,6 +268,51 @@ footer {
   font-size: 0.9em;
 }
 
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  body {
+    font-size: 16px;
+  }
+
+  header {
+    padding: 20px 10px;
+  }
+
+  section,
+  form {
+    padding: 20px 10px;
+    width: 100%;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 16px;
+  }
+
+  footer {
+    padding: 15px;
+    font-size: 0.8em;
+  }
+
+  .patrocinadores {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .texto-invitacion h2 {
+    font-size: 2em;
+  }
+
+  .patrocinador img {
+    width: 120px;
+  }
+
+  .logo-evento h1 {
+    font-size: 2em;
+  }
+}
+
 /* ===== MODAL DE CONFIRMACIÓN ===== */
 #modal-confirmacion {
   position: fixed;
@@ -297,50 +373,4 @@ footer {
 #btn-cancelar {
   background-color: #d32f2f;
   color: white;
-}
-
-/* ===== RESPONSIVO ===== */
-@media (max-width: 768px) {
-  body {
-    font-size: 16px;
-  }
-
-  header,
-  .header-patrocinadores {
-    padding: 20px 10px;
-  }
-
-  section,
-  form {
-    padding: 20px 10px;
-    width: 100%;
-  }
-
-  input,
-  select,
-  button {
-    font-size: 16px;
-  }
-
-  footer {
-    padding: 15px;
-    font-size: 0.8em;
-  }
-
-  .texto-invitacion {
-    flex-direction: column;
-    gap: 15px;
-  }
-
-  .texto-invitacion img {
-    height: 60px;
-  }
-
-  .logo-evento h1 {
-    font-size: 1.6em;
-  }
-
-  .logo-evento p {
-    font-size: 0.95em;
-  }
 }
