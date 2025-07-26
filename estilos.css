@@ -342,3 +342,63 @@ footer {
     max-width: 100px;
   }
 }
+
+.header-patrocinadores {
+  background-color: #fff;
+  color: #000;
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.texto-invitacion {
+  font-size: 1.2em;
+  font-weight: bold;
+  margin-bottom: 15px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.texto-invitacion img {
+  height: 50px;
+  width: auto;
+  object-fit: contain;
+}
+
+.logo-evento img {
+  max-width: 200px;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.logo-evento h1 {
+  font-size: 2em;
+  margin: 0;
+}
+
+.logo-evento p {
+  margin: 5px 0 0;
+  font-size: 1em;
+}
+
+/* Responsive para móvil */
+@media (max-width: 600px) {
+  .texto-invitacion {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .texto-invitacion img {
+    height: 40px;
+  }
+
+  .logo-evento h1 {
+    font-size: 1.6em;
+  }
+
+  .logo-evento p {
+    font-size: 0.95em;
+  }
+}
