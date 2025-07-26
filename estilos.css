@@ -292,3 +292,53 @@ footer {
   background-color: #d32f2f;
   color: white;
 }
+
+
+.encabezado-patrocinadores {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  background-color: #fff;
+  color: #000;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+.logo-central {
+  max-width: 220px;
+}
+
+.logo-central img {
+  max-width: 100%;
+  margin: 0 auto 15px;
+  display: block;
+}
+
+.logos-patrocinadores {
+  width: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logos-patrocinadores img {
+  max-width: 80px;
+  height: auto;
+}
+
+/* Responsive para móvil */
+@media (max-width: 600px) {
+  .encabezado-patrocinadores {
+    flex-direction: column;
+  }
+
+  .logos-patrocinadores {
+    width: auto;
+  }
+
+  .logos-patrocinadores img {
+    max-width: 100px;
+  }
+}
