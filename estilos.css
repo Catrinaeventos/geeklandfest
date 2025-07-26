@@ -35,11 +35,11 @@ img {
   flex-wrap: wrap;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 .texto-invitacion img {
-  height: 50px;
+  height: 80px;
   width: auto;
   object-fit: contain;
   transition: transform 0.3s ease;
@@ -329,11 +329,11 @@ footer {
 
   .texto-invitacion {
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
   }
 
   .texto-invitacion img {
-    height: 40px;
+    height: 60px;
   }
 
   .logo-evento h1 {
