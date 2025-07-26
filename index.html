@@ -3,74 +3,57 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Geekland Fest</title>
+  <title>Geekland Fest 2025</title>
   <link rel="stylesheet" href="estilos.css" />
 </head>
 <body>
-  <!-- Modal de Confirmación -->
-  <div id="modal-confirmacion" style="display: none;">
-    <div class="modal-contenido">
-      <h3>Confirma tus datos</h3>
-      <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
-      <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
-      <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
-      <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
-      <div class="botones-modal">
-        <button id="btn-cancelar">Cancelar</button>
-        <button id="btn-confirmar">Confirmar reserva</button>
-      </div>
+
+  <!-- Patrocinadores e invitación -->
+  <div class="header-patrocinadores">
+    <div class="texto-invitacion">
+      <img src="patrocinador1.png" alt="Patrocinador 1" />
+      <img src="patrocinador2.png" alt="Patrocinador 2" />
+      <img src="patrocinador3.png" alt="Patrocinador 3" />
+      <img src="patrocinador4.png" alt="Patrocinador 4" />
+      <span>te invitan a</span>
+    </div>
+    <div class="logo-evento">
+      <img src="logo.png" alt="Logo Geekland Fest" />
+      <h1>Geekland Fest 2025</h1>
+      <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
     </div>
   </div>
 
+  <!-- Contador -->
   <div id="contador"></div>
 
-  <header>
- <header class="header-patrocinadores">
- <div class="header-patrocinadores">
-  <div class="texto-invitacion">
-    <img src="patrocinador1.png" alt="Patrocinador 1" />
-    <img src="patrocinador2.png" alt="Patrocinador 2" />
-    <img src="patrocinador3.png" alt="Patrocinador 3" />
-    <img src="patrocinador4.png" alt="Patrocinador 4" />
-    <span>te invitan a</span>
-  </div>
-  <div class="logo-evento">
-    <img src="logo.png" alt="Logo Geekland Fest" />
-    <h1>Geekland Fest 2025</h1>
-    <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
-  </div>
-</div>
-  </p>
-
-  <div class="logo-evento">
-    <img src="logo.png" alt="Logo Geekland Fest" />
-    <h1>Geekland Fest 2025</h1>
-    <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
-  </div>
-</header>
-  </header>
-
+  <!-- Banner -->
   <img src="banner.jpg" style="width: 100%; height: auto; display: block;" />
 
+  <!-- Sección: Acerca -->
   <section id="acerca">
     <h2>¿Qué es Geekland Fest?</h2>
     <p>
-      Geekland Fest es mucho más que un evento, es el punto de encuentro definitivo para la comunidad geek en Monterrey. Celebrado los días 1 y 2 de noviembre en la emblemática Casa del Obrero CTM, este festival reúne lo mejor del anime, los videojuegos, el cosplay, la cultura pop y el entretenimiento alternativo.
+      Geekland Fest es mucho más que un evento, es el punto de encuentro definitivo para la comunidad geek en Monterrey...
     </p>
     <ul>
       <li>Exhibiciones y concursos de cosplay</li>
       <li>Lucha libre, box y espectáculos en vivo</li>
-      <li>Torneos de videojuegos</li>
+      <li>Torneos de videojuegos como Smash, KOF y más</li>
       <li>Concurso de Catrinas y espectáculo de fuego</li>
-      <li>Firma de autógrafos</li>
+      <li>Firma de autógrafos con invitados especiales</li>
       <li>Activaciones de K-pop, rifas y lotería</li>
-      <li>Zona de artistas, creativos y tiendas</li>
+      <li>Zona de artistas, creativos y tiendas con productos únicos</li>
     </ul>
     <p>
-      Horario: <strong>12:00 p.m. a 10:00 p.m. el sábado</strong> y <strong>12:00 p.m. a 8:00 p.m. el domingo</strong>.
+      Con un horario de <strong>12:00 p.m. a 10:00 p.m. el sábado</strong> y de <strong>12:00 p.m. a 8:00 p.m. el domingo</strong>, Geekland Fest es el lugar perfecto para vivir tu pasión al máximo.
+    </p>
+    <p>
+      ¡Ven con tu cosplay, tu energía y tu amor por la cultura geek, y forma parte de esta aventura épica!
     </p>
   </section>
 
+  <!-- Sección: Ubicación -->
   <section id="ubicacion">
     <h2>Ubicación del evento</h2>
     <p>Casa del Obrero CTM, Monterrey</p>
@@ -80,6 +63,7 @@
     </a>
   </section>
 
+  <!-- Sección: Preventa de boletos -->
   <section id="boletos">
     <h2>Preventa de boletos</h2>
     <form id="formulario-boletos">
@@ -105,13 +89,29 @@
     <div id="mensaje"></div>
   </section>
 
+  <!-- Modal de confirmación -->
+  <div id="modal-confirmacion" style="display: none;">
+    <div class="modal-contenido">
+      <h3>Confirma tus datos</h3>
+      <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
+      <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
+      <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
+      <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
+      <div class="botones-modal">
+        <button id="btn-cancelar">Cancelar</button>
+        <button id="btn-confirmar">Confirmar reserva</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
   <footer>
     <p>Síguenos en Facebook: www.facebook.com/CatrinaFestGaming</p>
     <p>Síguenos en Instagram: @Catrinafestgaming_</p>
     <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
   </footer>
 
-  <!-- Contador -->
+  <!-- Contador regresivo -->
   <script>
     const fechaEvento = new Date("November 1, 2025 12:00:00").getTime();
     const cuentaAtras = setInterval(() => {
@@ -133,12 +133,17 @@
     }, 1000);
   </script>
 
-  <!-- Firebase y EmailJS SDK -->
+  <!-- Firebase y EmailJS -->
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      emailjs.init("sXw_FwbU1-ehORAve"); // Reemplaza con tu Public Key si cambia
+    });
+  </script>
 
-  <!-- Script principal -->
+  <!-- Tu JS -->
   <script src="boletos.js"></script>
 </body>
 </html>
