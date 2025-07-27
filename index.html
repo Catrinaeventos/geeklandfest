@@ -5,207 +5,115 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Geekland Fest 2025</title>
   <link rel="stylesheet" href="estilos.css" />
+  <style>
+    /* Carrusel básico */
+    .patrocinadores-carousel {
+      position: relative;
+      overflow: hidden;
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .patrocinadores-track {
+      display: flex;
+      gap: 40px;
+      transition: transform 0.5s ease;
+      background: none; /* Sin mancha gris */
+    }
+
+    .patrocinador {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-width: 120px;
+      text-decoration: none;
+      color: #000;
+    }
+
+    .patrocinador img {
+      width: 70px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* Botones del carrusel */
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0, 0, 0, 0.5);
+      color: #fff;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
+      font-size: 20px;
+      border-radius: 50%;
+      z-index: 5;
+    }
+
+    .carousel-btn.prev { left: 10px; }
+    .carousel-btn.next { right: 10px; }
+  </style>
 </head>
 <body>
 
-<!-- Encabezado tipo cartel con patrocinadores -->
-<section class="patrocinadores">
-  <h2 class="titulo-invitacion">Te invitan a</h2>
-  
-  <div class="patrocinadores-carousel">
-    <button class="carousel-btn prev">&#10094;</button>
-    <div class="patrocinadores-track" id="patroTrack">
-      <a href="https://idrafast.com" target="_blank" class="patrocinador">
-        <img src="patro1.png" alt="Idrafast">
-        <span>Idrafast</span>
-      </a>
-      <a href="https://www.facebook.com/straw.bel.2025" target="_blank" class="patrocinador">
-        <img src="patro2.png" alt="Strawbel">
-        <span>Strawbel</span>
-      </a>
-      <a href="https://www.facebook.com/softcombatleones" target="_blank" class="patrocinador">
-        <img src="patro3.png" alt="Softcombat Leones">
-        <span>Softcombat Leones</span>
-      </a>
-      <a href="https://www.instagram.com/ultraprowrestling" target="_blank" class="patrocinador">
-        <img src="patro4.png" alt="Ultra Pro Wrestling">
-        <span>Ultra Pro Wrestling</span>
-      </a>
-      <!-- Repetición para efecto infinito -->
-      <a href="https://idrafast.com" target="_blank" class="patrocinador">
-        <img src="patro1.png" alt="Idrafast">
-        <span>Idrafast</span>
-      </a>
-      <a href="https://www.facebook.com/straw.bel.2025" target="_blank" class="patrocinador">
-        <img src="patro2.png" alt="Strawbel">
-        <span>Strawbel</span>
-      </a>
+  <!-- Encabezado tipo cartel con patrocinadores -->
+  <section class="patrocinadores">
+    <h2 class="titulo-invitacion">Te invitan a</h2>
+
+    <!-- Carrusel de patrocinadores -->
+    <div class="patrocinadores-carousel">
+      <button class="carousel-btn prev">&#10094;</button>
+      <div class="patrocinadores-track" id="patroTrack">
+        <a href="https://www.facebook.com/softcombatleones" target="_blank" class="patrocinador">
+          <img src="patro3.png" alt="Softcombat Leones">
+          <span>Softcombat Leones</span>
+        </a>
+        <a href="https://www.instagram.com/ultraprowrestling" target="_blank" class="patrocinador">
+          <img src="patro4.png" alt="Ultra Pro Wrestling">
+          <span>Ultra Pro Wrestling</span>
+        </a>
+        <a href="https://idrafast.com" target="_blank" class="patrocinador">
+          <img src="patro1.png" alt="Idrafast">
+          <span>Idrafast</span>
+        </a>
+        <a href="https://www.facebook.com/straw.bel.2025" target="_blank" class="patrocinador">
+          <img src="patro2.png" alt="Strawbel">
+          <span>Strawbel</span>
+        </a>
+      </div>
+      <button class="carousel-btn next">&#10095;</button>
     </div>
-    <button class="carousel-btn next">&#10095;</button>
-  </div>
 
-  <!-- Logo principal -->
-  <div class="logo-principal-evento">
-    <img src="logo.png" alt="Geekland Fest" />
-  </div>
-</section>
-
-<h1>Geekland Fest 2025</h1>
-<p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
-
-<!-- Contador -->
-<div id="contador"></div>
-
-<!-- Banner -->
-<img src="banner.jpg" style="width: 100%; height: auto; display: block;" />
-
-<!-- Sección: Acerca -->
-<section id="acerca">
-  <h2>¿Qué es Geekland Fest?</h2>
-  <p>
-    Geekland Fest es mucho más que un evento, es el punto de encuentro definitivo para la comunidad geek en Monterrey...
-  </p>
-  <ul>
-    <li>Exhibiciones y concursos de cosplay</li>
-    <li>Lucha libre, box y espectáculos en vivo</li>
-    <li>Torneos de videojuegos como Smash, KOF y más</li>
-    <li>Concurso de Catrinas y espectáculo de fuego</li>
-    <li>Firma de autógrafos con invitados especiales</li>
-    <li>Activaciones de K-pop, rifas y lotería</li>
-    <li>Zona de artistas, creativos y tiendas con productos únicos</li>
-  </ul>
-  <p>
-    Con un horario de <strong>12:00 p.m. a 10:00 p.m. el sábado</strong> y de <strong>12:00 p.m. a 8:00 p.m. el domingo</strong>, Geekland Fest es el lugar perfecto para vivir tu pasión al máximo.
-  </p>
-  <p>
-    ¡Ven con tu cosplay, tu energía y tu amor por la cultura geek, y forma parte de esta aventura épica!
-  </p>
-</section>
-
-<!-- Sección: Ubicación -->
-<section id="ubicacion">
-  <h2>Ubicación del evento</h2>
-  <p>Casa del Obrero CTM, Monterrey</p>
-  <a href="https://maps.app.goo.gl/bVWHwXy3JDUHRQWVA" target="_blank" class="boton-maps pulsante">
-    <img src="pin.png" alt="Icono de ubicación" class="icono-maps" />
-    <span>Cómo llegar</span>
-  </a>
-</section>
-
-<!-- Sección: Preventa de boletos -->
-<section id="boletos">
-  <h2>Preventa de boletos</h2>
-  <form id="formulario-boletos">
-    <label for="nombre">Nombre completo:</label>
-    <input type="text" id="nombre" name="nombre" required />
-
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" required />
-
-    <label for="tipo">Venta De Preventas:</label>
-    <select id="tipo" name="tipo">
-      <option value="preventa">Preventa - $120</option>
-      <option value="Preventa vip">Preventa Vip - $550</option>
-      <option value="Preventa VIP Pass 2 day">VIP Pass 2 day - $1000</option>
-      <option value="Ultimate Pass Vip">Ultimate Pass Vip - $3000</option>
-    </select>
-
-    <button type="submit">Reservar</button>
-  </form>
-
-  <button type="button" class="boton-pago" style="pointer-events: none; opacity: 0.5;">Pagar ahora</button>
-
-  <div id="mensaje"></div>
-</section>
-
-<!-- Modal de confirmación -->
-<div id="modal-confirmacion" style="display: none;">
-  <div class="modal-contenido">
-    <h3>Confirma tus datos</h3>
-    <p><strong>Nombre:</strong> <span id="confirm-nombre"></span></p>
-    <p><strong>Correo:</strong> <span id="confirm-email"></span></p>
-    <p><strong>Tipo de entrada:</strong> <span id="confirm-tipo"></span></p>
-    <p class="advertencia">Verifica que tu correo esté escrito correctamente. Usaremos esta información para enviarte tu acceso al evento.</p>
-    <div class="botones-modal">
-      <button id="btn-cancelar">Cancelar</button>
-      <button id="btn-confirmar">Confirmar reserva</button>
+    <!-- Logo principal -->
+    <div class="logo-principal-evento">
+      <img src="logo.png" alt="Geekland Fest" />
     </div>
-  </div>
-</div>
+  </section>
 
-<!-- Footer -->
-<footer>
-  <p>Síguenos en Facebook: www.facebook.com/CatrinaFestGaming</p>
-  <p>Síguenos en Instagram: @Catrinafestgaming_</p>
-  <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
-</footer>
+  <h1>Geekland Fest 2025</h1>
+  <p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
 
-<!-- Contador regresivo -->
-<script>
-  const fechaEvento = new Date("November 1, 2025 12:00:00").getTime();
-  const cuentaAtras = setInterval(() => {
-    const ahora = new Date().getTime();
-    const diferencia = fechaEvento - ahora;
+  <!-- Script del carrusel -->
+  <script>
+    const track = document.getElementById('patroTrack');
+    const btnPrev = document.querySelector('.carousel-btn.prev');
+    const btnNext = document.querySelector('.carousel-btn.next');
+    let offset = 0;
+    const step = 200; // Distancia a mover
+    const maxOffset = -((track.children.length - 4) * step); // Límite derecho
 
-    const dias = Math.floor(diferencia / (1000 * 60 * 60 * 24));
-    const horas = Math.floor((diferencia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    const minutos = Math.floor((diferencia % (1000 * 60 * 60)) / (1000 * 60));
-    const segundos = Math.floor((diferencia % (1000 * 60)) / 1000);
-
-    document.getElementById("contador").innerHTML =
-      `Faltan ${dias}d ${horas}h ${minutos}m ${segundos}s`;
-
-    if (diferencia < 0) {
-      clearInterval(cuentaAtras);
-      document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
+    function moveCarousel(direction) {
+      offset += direction * step;
+      if (offset > 0) offset = maxOffset;
+      if (offset < maxOffset) offset = 0;
+      track.style.transform = `translateX(${offset}px)`;
     }
-  }, 1000);
-</script>
 
-<!-- Control del carrusel -->
-<script>
-  const track = document.getElementById('patroTrack');
-  const btnPrev = document.querySelector('.carousel-btn.prev');
-  const btnNext = document.querySelector('.carousel-btn.next');
+    btnPrev.addEventListener('click', () => moveCarousel(1));
+    btnNext.addEventListener('click', () => moveCarousel(-1));
+  </script>
 
-  let autoScroll = true;
-  let offset = 0;
-
-  function stopAutoScroll() {
-    track.style.animation = 'none';
-    autoScroll = false;
-  }
-
-  btnPrev.addEventListener('click', () => {
-    stopAutoScroll();
-    offset += 200;
-    track.style.transform = `translateX(${offset}px)`;
-  });
-
-  btnNext.addEventListener('click', () => {
-    stopAutoScroll();
-    offset -= 200;
-    track.style.transform = `translateX(${offset}px)`;
-  });
-
-  track.addEventListener('mouseenter', () => {
-    if (autoScroll) track.style.animationPlayState = 'paused';
-  });
-  track.addEventListener('mouseleave', () => {
-    if (autoScroll) track.style.animationPlayState = 'running';
-  });
-</script>
-
-<!-- Firebase y EmailJS -->
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    emailjs.init("sXw_FwbU1-ehORAve");
-  });
-</script>
-
-<script src="boletos.js"></script>
 </body>
 </html>
