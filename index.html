@@ -8,10 +8,11 @@
 </head>
 <body>
 
-<!-- Encabezado tipo cartel con patrocinadores -->
+<!-- Contador -->
+<div id="contador"></div>
+
+<!-- Carrusel de patrocinadores -->
 <section class="patrocinadores">
-  <h2 class="titulo-invitacion">Te invitan a</h2>
-  
   <div class="patrocinadores-carousel">
     <button class="carousel-btn prev">&#10094;</button>
     <div class="patrocinadores-track" id="patroTrack">
@@ -35,20 +36,19 @@
     <button class="carousel-btn next">&#10095;</button>
   </div>
 
-  <!-- Logo principal -->
+  <!-- Texto y logo -->
+  <h2 class="titulo-invitacion">Te invitan a</h2>
   <div class="logo-principal-evento">
     <img src="logo.png" alt="Geekland Fest" />
   </div>
 </section>
 
-<h1 class="titulo-principal">Geekland Fest 2025</h1>
-<p style="text-align:center;">1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
-
-<!-- Contador -->
-<div id="contador"></div>
+<!-- Título principal -->
+<h1 class="titulo-evento">Geekland Fest 2025</h1>
+<p class="fecha-evento">1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
 
 <!-- Banner -->
-<img src="banner.jpg" style="width: 100%; height: auto; display: block;" />
+<img src="banner.jpg" class="banner" />
 
 <!-- Sección: Acerca -->
 <section id="acerca">
@@ -131,7 +131,7 @@
   <p>Contacto por correo: katycatrinagamingcosplayer@gmail.com</p>
 </footer>
 
-<!-- Contador regresivo -->
+<!-- Contador -->
 <script>
   const fechaEvento = new Date("November 1, 2025 12:00:00").getTime();
   const cuentaAtras = setInterval(() => {
@@ -151,24 +151,41 @@
       document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
     }
   }, 1000);
+</script>
 
-  // Control del carrusel
+<!-- Carrusel -->
+<script>
   const track = document.getElementById('patroTrack');
   const btnPrev = document.querySelector('.carousel-btn.prev');
   const btnNext = document.querySelector('.carousel-btn.next');
 
   let offset = 0;
+  const step = 220; // ancho de desplazamiento
+  const maxOffset = -(track.scrollWidth - track.clientWidth);
 
   btnPrev.addEventListener('click', () => {
-    offset += 200;
+    offset += step;
+    if (offset > 0) offset = 0;
     track.style.transform = `translateX(${offset}px)`;
   });
 
   btnNext.addEventListener('click', () => {
-    offset -= 200;
+    offset -= step;
+    if (offset < maxOffset) offset = maxOffset;
     track.style.transform = `translateX(${offset}px)`;
   });
 </script>
 
+<!-- Firebase y EmailJS -->
+<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    emailjs.init("sXw_FwbU1-ehORAve");
+  });
+</script>
+
+<script src="boletos.js"></script>
 </body>
 </html>
