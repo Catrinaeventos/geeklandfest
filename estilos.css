@@ -329,3 +329,86 @@ footer {
     font-size: 0.95em;
   }
 }
+
+
+/* ==== TE INVITAN A ==== */
+.titulo-invitacion {
+  text-align: center;
+  font-size: 2.5em;
+  color: #ff0077;
+  text-shadow: 2px 2px 8px #ff007766;
+  margin-bottom: 20px;
+  font-weight: bold;
+  animation: brillar 2s infinite;
+}
+
+@keyframes brillar {
+  0% { text-shadow: 2px 2px 5px #ff007766; }
+  50% { text-shadow: 2px 2px 15px #ff66a1; }
+  100% { text-shadow: 2px 2px 5px #ff007766; }
+}
+
+/* ==== PATROCINADORES - LINK ==== */
+.patrocinadores-contenedor {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.patrocinador {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.patrocinador img {
+  max-width: 80px;
+  transition: transform 0.3s ease;
+}
+
+.patrocinador span {
+  margin-top: 10px;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Hover efecto */
+.patrocinador:hover {
+  transform: scale(1.1);
+}
+
+/* Logo principal del evento */
+.logo-principal-evento {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.logo-principal-evento img {
+  max-width: 160px;
+}
+
+/* SOLO EN PANTALLAS GRANDES (PC) */
+@media (min-width: 769px) {
+  .patrocinador img {
+    max-width: 120px;
+  }
+
+  .patrocinadores-contenedor .patrocinador:first-child img {
+    max-width: 140px;
+  }
+
+  .logo-principal-evento img {
+    max-width: 180px;
+  }
+
+  .titulo-invitacion {
+    font-size: 3em;
+  }
+}
+
