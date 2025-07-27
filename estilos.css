@@ -239,3 +239,134 @@ footer p {
     width: 90px;
   }
 }
+
+#invitados {
+  background-color: #111;
+  padding: 40px 20px;
+}
+
+#invitados h2 {
+  color: #00ffff;
+  font-size: 2.5rem;
+}
+
+.subtitulo {
+  color: #ffcc00;
+  margin-top: 40px;
+  font-size: 1.8rem;
+}
+
+.tarjeta-conductora {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  background: #222;
+  padding: 20px;
+  border-radius: 15px;
+  margin-bottom: 30px;
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
+
+.foto-conductora {
+  width: 200px;
+  height: auto;
+  border-radius: 10px;
+  margin: 10px;
+}
+
+.contenido-conductora {
+  max-width: 500px;
+  margin: 10px;
+}
+
+.nombre-conductora {
+  font-size: 2rem;
+  color: #ff006e;
+}
+
+.descripcion-conductora {
+  font-size: 1rem;
+  margin: 10px 0;
+}
+
+.grid-invitados {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  justify-items: center;
+  margin-top: 20px;
+}
+
+.tarjeta-invitado {
+  background: #1c1c1c;
+  border-radius: 15px;
+  padding: 15px;
+  width: 100%;
+  max-width: 250px;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  transition: transform 0.3s;
+}
+
+.tarjeta-invitado:hover {
+  transform: scale(1.05);
+}
+
+.foto-invitado {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.nombre-invitado {
+  font-size: 1.2rem;
+  color: #ff80b3;
+  margin: 5px 0;
+}
+
+.descripcion-invitado {
+  font-size: 0.9rem;
+  color: #ccc;
+  margin-bottom: 10px;
+}
+
+.redes a img {
+  width: 24px;
+  margin: 0 5px;
+  filter: brightness(0) invert(1);
+  transition: transform 0.3s;
+}
+
+.redes a img:hover {
+  transform: scale(1.2);
+}
+
+/* Forzar 3 columnas incluso en móvil */
+@media (max-width: 768px) {
+  .grid-invitados {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+  }
+
+  .tarjeta-invitado {
+    max-width: 100px;
+    padding: 10px;
+  }
+
+  .foto-invitado {
+    border-radius: 5px;
+  }
+
+  .nombre-invitado {
+    font-size: 0.9rem;
+  }
+
+  .descripcion-invitado {
+    display: none; /* Ocultar descripción en pantallas pequeñas si se desea */
+  }
+
+  .redes a img {
+    width: 18px;
+  }
+}
+
