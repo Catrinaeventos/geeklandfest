@@ -5,75 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Geekland Fest 2025</title>
   <link rel="stylesheet" href="estilos.css" />
-  <style>
-    /* ===== CARRUSEL PATROCINADORES ===== */
-    .patrocinadores {
-      background-color: #fff;
-      color: #000;
-      text-align: center;
-      padding: 20px 10px;
-    }
-
-    .titulo-invitacion {
-      font-size: 2em;
-      color: #ff0077;
-      margin-bottom: 15px;
-    }
-
-    .patrocinadores-carousel {
-      position: relative;
-      overflow: hidden;
-      max-width: 1000px;
-      margin: 0 auto;
-    }
-
-    .patrocinadores-track {
-      display: flex;
-      gap: 40px;
-      transition: transform 0.5s ease;
-    }
-
-    .patrocinador {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-decoration: none;
-      color: #000;
-      min-width: 120px;
-    }
-
-    .patrocinador img {
-      width: 70px;
-      height: auto;
-      object-fit: contain;
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      background: rgba(0, 0, 0, 0.5);
-      color: #fff;
-      border: none;
-      padding: 10px;
-      cursor: pointer;
-      font-size: 20px;
-      border-radius: 50%;
-      z-index: 5;
-    }
-
-    .carousel-btn.prev { left: 10px; }
-    .carousel-btn.next { right: 10px; }
-
-    /* Logo principal del evento */
-    .logo-principal-evento {
-      margin-top: 30px;
-    }
-
-    .logo-principal-evento img {
-      max-width: 180px;
-    }
-  </style>
 </head>
 <body>
 
@@ -100,15 +31,6 @@
         <img src="patro4.png" alt="Ultra Pro Wrestling">
         <span>Ultra Pro Wrestling</span>
       </a>
-      <!-- Repetición para efecto infinito -->
-      <a href="https://idrafast.com" target="_blank" class="patrocinador">
-        <img src="patro1.png" alt="Idrafast">
-        <span>Idrafast</span>
-      </a>
-      <a href="https://www.facebook.com/straw.bel.2025" target="_blank" class="patrocinador">
-        <img src="patro2.png" alt="Strawbel">
-        <span>Strawbel</span>
-      </a>
     </div>
     <button class="carousel-btn next">&#10095;</button>
   </div>
@@ -119,8 +41,8 @@
   </div>
 </section>
 
-<h1>Geekland Fest 2025</h1>
-<p>1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
+<h1 class="titulo-principal">Geekland Fest 2025</h1>
+<p style="text-align:center;">1 y 2 de noviembre – Casa del Obrero, Monterrey</p>
 
 <!-- Contador -->
 <div id="contador"></div>
@@ -229,41 +151,24 @@
       document.getElementById("contador").innerHTML = "¡El evento ha comenzado!";
     }
   }, 1000);
-</script>
 
-<!-- Control del carrusel -->
-<script>
+  // Control del carrusel
   const track = document.getElementById('patroTrack');
   const btnPrev = document.querySelector('.carousel-btn.prev');
   const btnNext = document.querySelector('.carousel-btn.next');
+
   let offset = 0;
-  const step = 200;
-  const maxOffset = -((track.children.length - 4) * step);
 
-  function moveCarousel(direction) {
-    offset += direction * step;
-    if (offset > 0) offset = maxOffset;
-    if (offset < maxOffset) offset = 0;
+  btnPrev.addEventListener('click', () => {
+    offset += 200;
     track.style.transform = `translateX(${offset}px)`;
-  }
+  });
 
-  btnPrev.addEventListener('click', () => moveCarousel(1));
-  btnNext.addEventListener('click', () => moveCarousel(-1));
-
-  // Auto desplazamiento
-  setInterval(() => moveCarousel(-1), 3000);
-</script>
-
-<!-- Firebase y EmailJS -->
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/11.9.1/firebase-firestore-compat.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    emailjs.init("sXw_FwbU1-ehORAve");
+  btnNext.addEventListener('click', () => {
+    offset -= 200;
+    track.style.transform = `translateX(${offset}px)`;
   });
 </script>
 
-<script src="boletos.js"></script>
 </body>
 </html>
