@@ -220,26 +220,7 @@ footer p {
   margin: 5px 0;
 }
 
-/* Adaptación móvil */
-@media (max-width: 768px) {
-  .titulo-evento {
-    font-size: 2rem;
-  }
-
-  .fecha-evento {
-    font-size: 1.2rem;
-  }
-
-  #contador {
-    font-size: 1.5rem;
-    padding: 8px 15px;
-  }
-
-  .patrocinador img {
-    width: 90px;
-  }
-}
-
+/* === SECCIÓN DE INVITADOS === */
 #invitados {
   background-color: #111;
   padding: 40px 20px;
@@ -341,16 +322,34 @@ footer p {
   transform: scale(1.2);
 }
 
-/* Forzar 3 columnas incluso en móvil */
+/* Adaptación móvil */
 @media (max-width: 768px) {
+  .titulo-evento {
+    font-size: 2rem;
+  }
+
+  .fecha-evento {
+    font-size: 1.2rem;
+  }
+
+  #contador {
+    font-size: 1.5rem;
+    padding: 8px 15px;
+  }
+
+  .patrocinador img {
+    width: 90px;
+  }
+
   .grid-invitados {
     grid-template-columns: repeat(3, 1fr);
     gap: 10px;
   }
 
   .tarjeta-invitado {
-    max-width: 100px;
-    padding: 10px;
+    max-width: 100%;
+    padding: 15px;
+    min-height: 260px;
   }
 
   .foto-invitado {
@@ -358,15 +357,36 @@ footer p {
   }
 
   .nombre-invitado {
-    font-size: 0.9rem;
+    font-size: 1rem;
   }
 
   .descripcion-invitado {
-    display: none; /* Ocultar descripción en pantallas pequeñas si se desea */
+    display: block;
+    font-size: 0.8rem;
+    margin-top: 5px;
   }
 
   .redes a img {
-    width: 18px;
+    width: 20px;
   }
 }
 
+/* Efectos en PC (hover) */
+@media (min-width: 769px) {
+  .tarjeta-invitado {
+    transition: transform 0.3s, box-shadow 0.3s;
+  }
+
+  .tarjeta-invitado:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+  }
+
+  .descripcion-invitado {
+    transition: color 0.3s;
+  }
+
+  .tarjeta-invitado:hover .descripcion-invitado {
+    color: #fff;
+  }
+}
