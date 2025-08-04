@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Arial', sans-serif;
-  background-color: #000; /* Fondo negro */
+  background-color: #000;
   color: #fff;
   line-height: 1.6;
   text-align: center;
@@ -47,7 +47,6 @@ h1, h2, h3 {
   100% { text-shadow: 0 0 10px #ff80b3, 0 0 20px #ff4b8e, 0 0 30px #ff006e; }
 }
 
-/* Fecha del evento */
 .fecha-evento {
   font-size: 1.5rem;
   color: #00ffff;
@@ -125,7 +124,6 @@ h1, h2, h3 {
   right: 10px;
 }
 
-/* Texto "Te invitan a" */
 .titulo-invitacion {
   font-size: 2rem;
   margin-top: 20px;
@@ -133,14 +131,12 @@ h1, h2, h3 {
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
 }
 
-/* === LOGO PRINCIPAL === */
 .logo-principal-evento img {
   max-width: 250px;
   margin: 20px auto;
   display: block;
 }
 
-/* === SECCIONES === */
 section {
   padding: 20px;
   max-width: 900px;
@@ -157,7 +153,6 @@ ul li {
   margin: 5px 0;
 }
 
-/* === UBICACIÓN === */
 .boton-maps {
   display: inline-flex;
   align-items: center;
@@ -178,7 +173,6 @@ ul li {
   margin-right: 8px;
 }
 
-/* === FORMULARIO === */
 #boletos form {
   display: flex;
   flex-direction: column;
@@ -207,7 +201,6 @@ ul li {
   background-color: #ff4b8e;
 }
 
-/* === FOOTER === */
 footer {
   background: #111;
   color: #ccc;
@@ -220,7 +213,6 @@ footer p {
   margin: 5px 0;
 }
 
-/* === SECCIÓN DE INVITADOS === */
 #invitados {
   background-color: #111;
   padding: 40px 20px;
@@ -247,6 +239,7 @@ footer p {
   border-radius: 15px;
   margin-bottom: 30px;
   box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  text-align: left;
 }
 
 .foto-conductora {
@@ -271,44 +264,8 @@ footer p {
   margin: 10px 0;
 }
 
-.grid-invitados {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-  justify-items: center;
-  margin-top: 20px;
-}
-
-.tarjeta-invitado {
-  background: #1c1c1c;
-  border-radius: 15px;
-  padding: 15px;
-  width: 100%;
-  max-width: 250px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s;
-}
-
-.tarjeta-invitado:hover {
-  transform: scale(1.05);
-}
-
-.foto-invitado {
-  width: 100%;
-  border-radius: 10px;
-  margin-bottom: 10px;
-}
-
-.nombre-invitado {
-  font-size: 1.2rem;
-  color: #ff80b3;
-  margin: 5px 0;
-}
-
-.descripcion-invitado {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin-bottom: 10px;
+.redes {
+  margin-top: 10px;
 }
 
 .redes a img {
@@ -317,7 +274,6 @@ footer p {
   transition: transform 0.3s ease;
 }
 
-/* Aplica filtro solo a los íconos que no sean Facebook */
 .redes a:not([href*="facebook"]) img {
   filter: brightness(0) invert(1);
 }
@@ -326,72 +282,47 @@ footer p {
   transform: scale(1.2);
 }
 
-/* Adaptación móvil */
 @media (max-width: 768px) {
   .titulo-evento {
     font-size: 2rem;
   }
-
   .fecha-evento {
     font-size: 1.2rem;
   }
-
   #contador {
     font-size: 1.5rem;
     padding: 8px 15px;
   }
-
   .patrocinador img {
     width: 90px;
   }
-
+  .tarjeta-conductora {
+    flex-direction: column;
+    text-align: center;
+  }
   .grid-invitados {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
   }
-
-  .tarjeta-invitado {
-    max-width: 100%;
-    padding: 15px;
-    min-height: 260px;
-  }
-
-  .foto-invitado {
-    border-radius: 5px;
-  }
-
-  .nombre-invitado {
-    font-size: 1rem;
-  }
-
-  .descripcion-invitado {
-    display: block;
-    font-size: 0.8rem;
-    margin-top: 5px;
-  }
-
-  .redes a img {
-    width: 20px;
+  .foto-conductora {
+    width: 100%;
+    max-width: 300px;
   }
 }
 
-/* Efectos en PC (hover) */
 @media (min-width: 769px) {
-  .tarjeta-invitado {
+  .tarjeta-conductora {
     transition: transform 0.3s, box-shadow 0.3s;
   }
-
-  .tarjeta-invitado:hover {
-    transform: scale(1.05);
+  .tarjeta-conductora:hover {
+    transform: scale(1.02);
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
   }
-
-  .descripcion-invitado {
+  .descripcion-conductora {
     transition: color 0.3s;
   }
-
-  .tarjeta-invitado:hover .descripcion-invitado {
+  .tarjeta-conductora:hover .descripcion-conductora {
     color: #fff;
   }
 }
-
