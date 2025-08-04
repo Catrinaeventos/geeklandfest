@@ -312,10 +312,14 @@ footer p {
 }
 
 .redes a img {
-  width: 24px;
+  width: 30px;
   margin: 0 5px;
+  transition: transform 0.3s ease;
+}
+
+/* Aplica filtro solo a los íconos que no sean Facebook */
+.redes a:not([href*="facebook"]) img {
   filter: brightness(0) invert(1);
-  transition: transform 0.3s;
 }
 
 .redes a img:hover {
@@ -390,3 +394,4 @@ footer p {
     color: #fff;
   }
 }
+
