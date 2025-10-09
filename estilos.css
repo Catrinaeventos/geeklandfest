@@ -475,6 +475,11 @@ footer p {
 .invitados:last-of-type .grid-invitados {
   display: flex;
   justify-content: center;
+  align-items: flex-start; /* asegura alineación vertical pareja */
   flex-wrap: wrap;
   gap: 20px;
+}
+
+.invitados:last-of-type .card {
+  flex: 0 1 280px; /* mismo ancho que las demás tarjetas */
 }
