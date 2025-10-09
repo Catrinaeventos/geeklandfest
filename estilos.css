@@ -10,466 +10,216 @@ body {
 
 h1, h2, h3 {
   margin: 10px 0;
-  font-weight: bold;
 }
 
 /* === CONTADOR === */
 #contador {
-  font-size: 2rem;
+  font-size: 1.8em;
+  margin-top: 10px;
   color: #ffcc00;
-  font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-  margin: 15px auto;
-  padding: 10px 20px;
-  border: 2px solid #ffcc00;
-  border-radius: 10px;
-  display: inline-block;
-  animation: pulse 1.5s infinite;
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-  100% { transform: scale(1); }
-}
-
-/* === TÍTULO PRINCIPAL === */
-.titulo-evento {
-  font-size: 3rem;
-  color: #ff006e;
-  text-transform: uppercase;
-  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.7);
-  animation: glow 2s ease-in-out infinite alternate;
-}
-
-@keyframes glow {
-  0% { text-shadow: 0 0 5px #ff006e, 0 0 10px #ff4b8e, 0 0 20px #ff80b3; }
-  100% { text-shadow: 0 0 10px #ff80b3, 0 0 20px #ff4b8e, 0 0 30px #ff006e; }
-}
-
-/* Fecha del evento */
-.fecha-evento {
-  font-size: 1.5rem;
-  color: #00ffff;
-  font-weight: bold;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.6);
-  margin-bottom: 20px;
-}
-
-/* === BANNER === */
-.banner {
-  width: 100%;
-  height: auto;
-  display: block;
-  margin-bottom: 30px;
 }
 
 /* === CARRUSEL DE PATROCINADORES === */
-.patrocinadores-carousel {
+.patrocinadores {
+  margin: 40px 0;
   position: relative;
   overflow: hidden;
-  max-width: 100%;
-  margin: 20px auto;
-  padding: 10px 0;
 }
 
-.patrocinadores-track {
+.carrusel {
   display: flex;
-  transition: transform 0.4s ease-in-out;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
 }
 
-.patrocinador {
-  flex: 0 0 auto;
-  text-align: center;
-  margin: 0 10px;
-  color: #fff;
+.carrusel::-webkit-scrollbar {
+  display: none;
 }
 
-.patrocinador img {
-  width: 120px;
-  height: auto;
-  display: block;
-  margin: 0 auto 5px;
+.carrusel img {
+  height: 100px;
+  margin: 0 15px;
   transition: transform 0.3s;
 }
 
-.patrocinador img:hover {
+.carrusel img:hover {
   transform: scale(1.1);
 }
 
-.carousel-btn {
+.btn-carrusel {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
+  background-color: rgba(255, 255, 255, 0.2);
   border: none;
-  padding: 10px 15px;
+  color: white;
+  font-size: 2em;
   cursor: pointer;
-  font-size: 1.5rem;
+  padding: 5px 10px;
+  z-index: 1;
   border-radius: 50%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  z-index: 5;
 }
 
-.patrocinadores-carousel:hover .carousel-btn {
-  opacity: 1;
+.btn-carrusel:hover {
+  background-color: rgba(255, 255, 255, 0.5);
 }
 
-.carousel-btn.prev {
+.izquierda {
   left: 10px;
 }
 
-.carousel-btn.next {
+.derecha {
   right: 10px;
 }
 
-/* Texto "Te invitan a" */
-.titulo-invitacion {
-  font-size: 2rem;
-  margin-top: 20px;
-  color: #00ffcc;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
-}
-
-/* === LOGO PRINCIPAL === */
-.logo-principal-evento img {
-  max-width: 250px;
-  margin: 20px auto;
-  display: block;
-}
-
-/* === SECCIONES === */
-section {
-  padding: 20px;
-  max-width: 900px;
-  margin: auto;
-  text-align: center;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  margin: 5px 0;
-}
-
-/* === UBICACIÓN === */
-.boton-maps {
-  display: inline-flex;
-  align-items: center;
-  background-color: #ff006e;
-  padding: 10px 15px;
-  border-radius: 8px;
-  color: #fff;
-  text-decoration: none;
-  transition: background 0.3s;
-}
-
-.boton-maps:hover {
-  background-color: #ff4b8e;
-}
-
-.icono-maps {
-  width: 20px;
-  margin-right: 8px;
-}
-
-/* === FORMULARIO === */
-#boletos form {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-width: 400px;
-  margin: 0 auto;
-}
-
-#boletos input, 
-#boletos select, 
-#boletos button {
-  padding: 10px;
-  font-size: 1rem;
-  border-radius: 5px;
-  border: none;
-}
-
-#boletos button {
-  background-color: #ff006e;
-  color: #fff;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-#boletos button:hover {
-  background-color: #ff4b8e;
-}
-
-/* === FOOTER === */
-footer {
-  background: #111;
-  color: #ccc;
-  text-align: center;
-  padding: 20px;
-  font-size: 0.9rem;
-}
-
-footer p {
-  margin: 5px 0;
-}
-
-/* === SECCIÓN DE INVITADOS === */
-#invitados {
-  background-color: #111;
-  padding: 40px 20px;
-}
-
-#invitados h2 {
-  color: #00ffff;
-  font-size: 2.5rem;
+/* === INVITADOS === */
+.invitados {
+  padding: 40px 0;
 }
 
 .subtitulo {
   color: #ffcc00;
-  margin-top: 40px;
-  font-size: 1.8rem;
+  font-size: 1.6em;
+  margin-bottom: 20px;
 }
 
-.tarjeta-conductora {
+/* Alineación y formato de las tarjetas */
+.grid-invitados {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
-  background: #222;
-  padding: 20px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-}
-
-.foto-conductora {
-  width: 200px;
-  height: auto;
-  border-radius: 10px;
-  margin: 10px;
-}
-
-.contenido-conductora {
-  max-width: 500px;
-  margin: 10px;
-}
-
-.nombre-conductora {
-  font-size: 2rem;
-  color: #ff006e;
-}
-
-.descripcion-conductora {
-  font-size: 1rem;
-  margin: 10px 0;
-}
-
-/* ✅ CORRECCIÓN DE ALINEACIÓN DE CLUBES */
-.grid-invitados {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  justify-content: center; /* 💡 Centra las tarjetas aunque haya solo 2 (como en Clubes) */
   gap: 20px;
-  justify-items: center;
-  align-items: start;
   width: 90%;
   margin: 20px auto 0 auto;
 }
 
 .tarjeta-invitado {
-  background: #1c1c1c;
+  background-color: #111;
   border-radius: 15px;
   padding: 15px;
-  width: 100%;
-  max-width: 250px;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
-  transition: transform 0.3s;
+  width: 280px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 
 .tarjeta-invitado:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.foto-invitado {
+.tarjeta-invitado img {
   width: 100%;
   border-radius: 10px;
-  margin-bottom: 10px;
+  display: block;
+  margin: 0 auto;
 }
 
-.nombre-invitado {
-  font-size: 1.2rem;
-  color: #ff80b3;
-  margin: 5px 0;
-}
-
-.descripcion-invitado {
-  font-size: 0.9rem;
-  color: #ccc;
-  margin-bottom: 10px;
+/* Redes sociales */
+.redes {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 10px;
 }
 
 .redes a img {
-  width: 30px;
-  margin: 0 5px;
-  transition: transform 0.3s ease;
-}
-
-/* Aplica filtro solo a los íconos que no sean Facebook */
-.redes a:not([href*="facebook"]) img {
+  width: 25px;
+  height: 25px;
   filter: brightness(0) invert(1);
+  transition: transform 0.3s;
 }
 
 .redes a img:hover {
   transform: scale(1.2);
 }
 
-/* Adaptación móvil */
-@media (max-width: 768px) {
-  .titulo-evento {
-    font-size: 2rem;
-  }
-
-  .fecha-evento {
-    font-size: 1.2rem;
-  }
-
-  #contador {
-    font-size: 1.5rem;
-    padding: 8px 15px;
-  }
-
-  .patrocinador img {
-    width: 90px;
-  }
-
-  .grid-invitados {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 10px;
-  }
-
-  .tarjeta-invitado {
-    max-width: 100%;
-    padding: 15px;
-    min-height: 260px;
-  }
-
-  .foto-invitado {
-    border-radius: 5px;
-  }
-
-  .nombre-invitado {
-    font-size: 1rem;
-  }
-
-  .descripcion-invitado {
-    display: block;
-    font-size: 0.8rem;
-    margin-top: 5px;
-  }
-
-  .redes a img {
-    width: 20px;
-  }
+/* === FORMULARIO DE PREVENTA === */
+.formulario {
+  background-color: #111;
+  border-radius: 15px;
+  padding: 30px;
+  width: 90%;
+  max-width: 500px;
+  margin: 40px auto;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
-/* Efectos en PC (hover) */
-@media (min-width: 769px) {
-  .tarjeta-invitado {
-    transition: transform 0.3s, box-shadow 0.3s;
-  }
+.formulario h2 {
+  color: #ffcc00;
+}
 
-  .tarjeta-invitado:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
-  }
+input, select, button {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 8px;
+}
 
-  .descripcion-invitado {
-    transition: color 0.3s;
-  }
+input, select {
+  background-color: #222;
+  color: white;
+}
 
-  .tarjeta-invitado:hover .descripcion-invitado {
-    color: #fff;
-  }
+button {
+  background-color: #ffcc00;
+  color: #000;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ffd633;
 }
 
 /* === MODAL DE CONFIRMACIÓN === */
-#modal-confirmacion {
+.modal {
+  display: none;
   position: fixed;
-  top: 0;
+  z-index: 999;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: none; /* se activa con JS */
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 .modal-contenido {
-  background-color: #222;
-  padding: 20px 30px;
+  background-color: #111;
+  margin: 15% auto;
+  padding: 30px;
   border-radius: 15px;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-  max-width: 400px;
   width: 90%;
-  color: #fff;
-  text-align: left;
+  max-width: 400px;
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
 }
 
-.modal-contenido h3 {
-  margin-top: 0;
-  color: #00ffff;
-}
-
-.modal-contenido p {
-  margin: 10px 0;
-  font-size: 0.95rem;
-}
-
-.advertencia {
+.cerrar {
   color: #ffcc00;
-  font-size: 0.85rem;
-  margin-top: 10px;
-}
-
-.botones-modal {
-  display: flex;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-top: 15px;
-}
-
-.botones-modal button {
-  padding: 8px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
+  float: right;
+  font-size: 28px;
   font-weight: bold;
-  font-size: 0.9rem;
-  transition: background-color 0.3s ease;
+  cursor: pointer;
 }
 
-#btn-cancelar {
-  background-color: #888;
-  color: #000;
+.cerrar:hover {
+  color: #fff;
 }
 
-#btn-cancelar:hover {
-  background-color: #aaa;
-}
+/* === RESPONSIVO === */
+@media (max-width: 768px) {
+  .carrusel img {
+    height: 80px;
+  }
 
-#btn-confirmar {
-  background-color: #00c853;
-  color: #000;
-}
+  .tarjeta-invitado {
+    width: 90%;
+  }
 
-#btn-confirmar:hover {
-  background-color: #00e676;
+  .formulario {
+    padding: 20px;
+  }
 }
